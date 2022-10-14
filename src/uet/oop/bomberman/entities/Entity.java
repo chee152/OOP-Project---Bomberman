@@ -8,6 +8,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.input.KeyEvent;
 import uet.oop.bomberman.graphics.Sprite;
 
+import java.io.IOException;
+
 public abstract class Entity {
     //Tọa độ X tính từ góc trái trên trong Canvas
     protected int x;
@@ -17,23 +19,10 @@ public abstract class Entity {
 
     protected Image img;
     protected Sprite sprite;
-    protected int _animate = 0;
-    protected final int MAX_ANIMATE = 7500;
 
     protected int xTile;
     protected int yTile;
 
-    protected void animate()
-    {
-        if (_animate < MAX_ANIMATE)
-        {
-            _animate++;
-        }
-        else
-        {
-            _animate = 0;
-        }
-    }
 
     //Khởi tạo đối tượng, chuyển từ tọa độ đơn vị sang tọa độ trong canvas
     public Entity( int xUnit, int yUnit, Image img) {
@@ -44,6 +33,7 @@ public abstract class Entity {
         yTile = yUnit;
     }
 
+    //get set functions
     public double getX() {
         return x;
     }
@@ -76,9 +66,11 @@ public abstract class Entity {
         return yTile;
     }
 
+
+
     public void render(GraphicsContext gc) {
         gc.drawImage(img, x, y);
     }
-    public abstract void update();
+    public abstract void update() throws IOException;
 
 }

@@ -10,6 +10,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import uet.oop.bomberman.entities.*;
+import uet.oop.bomberman.entities.character.bomber.Bomber;
 import uet.oop.bomberman.graphics.*;
 
 import java.io.*;
@@ -27,7 +28,7 @@ public class BombermanGame extends Application {
     private GraphicsContext gc;
     private Canvas canvas;
     private List<Entity> entities = new ArrayList<>();
-    private List<Entity> stillObjects = new ArrayList<>(); //tao doi tuong tinh'
+    public static final List<Entity> stillObjects = new ArrayList<>(); //tao doi tuong tinh'
     private Bomber bomberman;
 
     public static void main(String[] args) {
