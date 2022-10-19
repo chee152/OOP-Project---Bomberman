@@ -8,5 +8,7 @@ public abstract class Tile extends Entity {
     {
         super(xUnit, yUnit, img);
     }
-    public void update();
+    public void update(){
+
+    }
 }

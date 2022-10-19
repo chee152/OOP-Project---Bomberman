@@ -1,13 +1,110 @@
 package uet.oop.bomberman.entities.character.bomber;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import uet.oop.bomberman.entities.Entity;
+import uet.oop.bomberman.ControlKeyboard.Keyboard;
+import uet.oop.bomberman.Game;
+import uet.oop.bomberman.entities.character.Character;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.map.GameMap;
 
-public class Bomber extends Entity {
+import java.io.IOException;
 
-    public Bomber(int i, int i1, Image fxImage) {
-        super(i, i1, fxImage);
+public class Bomber extends Character {
+    private static int VELOCITY = 2;
+    private Sprite prevSprite = Sprite.player_right;
+    private boolean alive = true;
+
+    public Bomber(int x, int y, Image img) {
+        super(x,y,img);
+        sprite = Sprite.player_right;
+    }
+
+    public static int getVELOCITY() {
+        return VELOCITY;
+    }
+
+    public static void setVELOCITY(int VELOCITY) {
+        Bomber.VELOCITY = VELOCITY;
+    }
+
+    public boolean isAlive() {
+        return alive;
+    }
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
+    }
+
+    @Override
+    public void update() throws IOException {
+        if (!isAlive())
+        {
+            afterKill();
+            if (this.isDestroyed())
+            {
+                resetBomber();
+            }
+        }
+        chooseSprite();
+        animate();
+        calculateMove();
+        setImg(sprite.getFxImage());
+    }
+
+    public void resetBomber() throws IOException
+    {
+        img = Sprite.player_right.getFxImage();
+        moving = false;
+        setAlive(true);
+        GameMap.initMap();
+    }
+    public void kill()
+    {
+
+    }
+    public void render(GraphicsContext gc)
+    {
+        gc.drawImage(img, x, y);
+    }
+    public void chooseSprite()
+    {
+        if (isAlive())
+        {
+            if (Keyboard.up) {
+                sprite = Sprite.movingSprite(Sprite.player_up, Sprite.player_up_1, Sprite.player_up_2, animate, time);
+                prevSprite = Sprite.player_up;
+            }
+            if (Keyboard.left) {
+                sprite = Sprite.movingSprite(Sprite.player_left, Sprite.player_left_1, Sprite.player_left_2, animate, time);
+                prevSprite = Sprite.player_left;
+            }
+            if (Keyboard.down) {
+                sprite = Sprite.movingSprite(Sprite.player_down, Sprite.player_down_1, Sprite.player_down_2, animate, time);
+                prevSprite = Sprite.player_down;
+            }
+            if (Keyboard.right) {
+                sprite = Sprite.movingSprite(Sprite.player_right, Sprite.player_right_1, Sprite.player_right_2, animate, time);
+                prevSprite = Sprite.player_right;
+            }
+            if (!Keyboard.up && !Keyboard.left && !Keyboard.down && !Keyboard.right) {
+                sprite = prevSprite;
+            }
+        }
+        else {
+            sprite = Sprite.movingSprite(Sprite.player_dead1,Sprite.player_dead2,Sprite.player_dead3, animate, Game.TIME_TO_DISAPPEAR);
+        }
+    }
+    public void calculateMove()
+    {
+        if (isAlive())
+        {
+            int dx = 0, dy = 0;
+            if (Keyboard.up)
+            {
+
+            }
+        }
     }
 }
