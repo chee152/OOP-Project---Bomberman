@@ -21,7 +21,7 @@ public class Collision {
         return !((bottomA <= topB) || (topA >= bottomB) || (rightA <= leftB) || (leftA >= rightB));
     }
     public static boolean checkCollisionWithBuffer(Entity A, Entity B) {
-       int buff=10;
+        int buff=10;
         double leftB, leftA;
         double rightA,rightB;
         double topA, topB;
