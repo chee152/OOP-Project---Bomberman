@@ -10,14 +10,14 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import uet.oop.bomberman.graphics.Sprite;
 
-public class Show {
+public class ShowInf {
     Text scoreShow;
 
-    public Show() {
+    public ShowInf() {
         scoreShow = new Text("0");
     }
 
-    public void makeShowScore(Group root, TextFlow textFlow) {
+    public  void makeShowScore(Group root, TextFlow textFlow) {
 
         scoreShow.setFill(new LinearGradient(0, 0, 1, 1, true,
                 CycleMethod.REFLECT,
