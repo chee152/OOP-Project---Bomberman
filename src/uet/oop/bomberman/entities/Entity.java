@@ -34,7 +34,7 @@ public abstract class Entity {
     }
 
     //get set functions
-    public double getX() {
+    public int getX() {
         return x;
     }
 
@@ -42,7 +42,7 @@ public abstract class Entity {
         this.x = x;
     }
 
-    public double getY() {
+    public int getY() {
         return y;
     }
 

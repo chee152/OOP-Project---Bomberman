@@ -60,10 +60,7 @@ public class Bomber extends Character {
         setAlive(true);
         GameMap.initMap();
     }
-    public void kill()
-    {
 
-    }
     public void render(GraphicsContext gc)
     {
         gc.drawImage(img, x, y);

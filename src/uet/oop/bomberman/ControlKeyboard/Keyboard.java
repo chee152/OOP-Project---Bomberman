@@ -4,7 +4,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
 
 public class Keyboard {
-    public static boolean up, down, right, left, space;
+    public static boolean up, down, right, left, space, pause;
 
     public static void setInputKeyEvent(javafx.scene.input.KeyEvent event)
     {
@@ -37,8 +37,12 @@ public class Keyboard {
             if (event.getCode() == KeyCode.SPACE)
             {
                 space = true;
+            } else if (event.getCode() == KeyCode.ESCAPE) {
+                 pause = true;
+            } else
+            {
+                space = false;
             }
-            else space = false;
         }
     }
 }

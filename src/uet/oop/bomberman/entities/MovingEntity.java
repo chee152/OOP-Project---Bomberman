@@ -1,13 +1,12 @@
 package uet.oop.bomberman.entities;
 
 import javafx.scene.image.Image;
-import uet.oop.bomberman.collision.Collision;
 import uet.oop.bomberman.entities.bomb.Bomb;
 import uet.oop.bomberman.graphics.Sprite;
 
 
-public abstract class AnimatedEntity extends Entity{
-    public AnimatedEntity(int xUnit, int yUnit, Image img)
+public abstract class MovingEntity extends Entity{
+    public MovingEntity(int xUnit, int yUnit, Image img)
     {
         super(xUnit, yUnit, img);
     }
@@ -17,15 +16,16 @@ public abstract class AnimatedEntity extends Entity{
     protected boolean moving = true;
     protected final int MAX_ANIMATE = 7500;
     protected final int SIZE = Sprite.SCALED_SIZE - 6;
-
+    protected int x1_temp, x2_temp, y1_temp, y2_temp;
+    protected final int pixel = 1;
 
     //check va chạm với bomb
-    public boolean bombCollision(Bomb bomb, AnimatedEntity animatedEntity)
+    public boolean bombCollision(Bomb bomb, MovingEntity movingEntity)
     {
-        if (bomb == null||animatedEntity == null) return false;
+        if (bomb == null|| movingEntity == null) return false;
         //tính khoảng cách từ bom đến những AnimatedEntity
-        int dx = Math.abs(bomb.getX() - animatedEntity.getX());
-        int dy = Math.abs(bomb.getY() - animatedEntity.getY());
+        int dx =  Math.abs(bomb.getX() - movingEntity.getX());
+        int dy =  Math.abs(bomb.getY() - movingEntity.getY());
 
         //check trạng thái của Bomber, nếu Bomber nằm trong vùng bomb nổ
         //thì Bomber chết và ngược lại
@@ -36,7 +36,6 @@ public abstract class AnimatedEntity extends Entity{
         return false;
     }
 
-    public abstract void kill();
     protected abstract void afterKill();
     protected void animate()
     {

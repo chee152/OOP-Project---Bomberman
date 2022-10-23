@@ -1,15 +1,17 @@
 package uet.oop.bomberman.map;
 
-import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Game;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.character.bomber.Bomber;
 import uet.oop.bomberman.entities.character.enemy.Balloom;
 import uet.oop.bomberman.entities.character.enemy.Oneal;
-import uet.oop.bomberman.entities.tile.destroyable.Brick;
+import uet.oop.bomberman.entities.tile.DestroyBrick;
 import uet.oop.bomberman.entities.tile.item.BombItem;
 import uet.oop.bomberman.entities.tile.item.FlameItem;
 import uet.oop.bomberman.entities.tile.item.SpeedItem;
+import uet.oop.bomberman.entities.tile.normal.Grass;
+import uet.oop.bomberman.entities.tile.normal.Portal;
+import uet.oop.bomberman.entities.tile.normal.Wall;
 import uet.oop.bomberman.graphics.Sprite;
 
 import java.io.FileReader;
@@ -74,7 +76,7 @@ public class GameMap {
     public static void fileLoad(int gameLevel) throws IOException
     {
 
-        String path = String.format("res/levels/Level%d.txt", gameLevel);
+        String path = String.format("res/levels/level%d.txt", gameLevel);
         FileReader filePath = new FileReader(path);
         Scanner reader = new Scanner(filePath);
 
@@ -116,7 +118,7 @@ public class GameMap {
                         break;
                     case '*':
                         layer.add(new Grass(j, i, Sprite.grass.getFxImage()));
-                        layer.add(new Brick(j, i, Sprite.brick.getFxImage()));
+                        layer.add(new DestroyBrick(j, i, Sprite.brick.getFxImage()));
                         Game.LayeredEntity.put(Game.generateKey(j, i), layer);
                         Game.stillObjects.add(new Grass(j, i, Sprite.grass.getFxImage()));
                         break;
@@ -129,25 +131,25 @@ public class GameMap {
                     case 'f':
                         layer.add(new Grass(j, i, Sprite.grass.getFxImage()));
                         layer.add(new FlameItem(j, i, Sprite.powerup_flames.getFxImage()));
-                        layer.add(new Brick(j, i, Sprite.brick.getFxImage()));
+                        layer.add(new DestroyBrick(j, i, Sprite.brick.getFxImage()));
                         Game.LayeredEntity.put(Game.generateKey(j, i), layer);
                         break;
                     case 'b':
                         layer.add(new Grass(j, i, Sprite.grass.getFxImage()));
                         layer.add(new BombItem(j, i, Sprite.powerup_bombpass.getFxImage()));
-                        layer.add(new Brick(j, i, Sprite.brick.getFxImage()));
+                        layer.add(new DestroyBrick(j, i, Sprite.brick.getFxImage()));
                         Game.LayeredEntity.put(Game.generateKey(j, i), layer);
                         break;
                     case 's':
                         layer.add(new Grass(j, i, Sprite.grass.getFxImage()));
                         layer.add(new SpeedItem(j, i, Sprite.powerup_speed.getFxImage()));
-                        layer.add(new Brick(j, i, Sprite.brick.getFxImage()));
+                        layer.add(new DestroyBrick(j, i, Sprite.brick.getFxImage()));
                         Game.LayeredEntity.put(Game.generateKey(j, i), layer);
                         break;
                     case 'x':
                         layer.add(new Grass(j, i, Sprite.grass.getFxImage()));
                         layer.add(new Portal(j, i, Sprite.portal.getFxImage()));
-                        layer.add(new Brick(j, i, Sprite.brick.getFxImage()));
+                        layer.add(new DestroyBrick(j, i, Sprite.brick.getFxImage()));
                         Game.LayeredEntity.put(Game.generateKey(j, i), layer);
                         break;
                     case '1':
@@ -169,5 +171,8 @@ public class GameMap {
                 }
             }
         }
+    }
+    public static char[][] getMap() {
+        return map;
     }
 }
