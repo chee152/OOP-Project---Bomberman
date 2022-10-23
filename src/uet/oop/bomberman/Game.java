@@ -464,7 +464,8 @@ public class Game extends Application {
             GameMap.setGameLevel(GameMap.getGameLevel()+1);
             GameMap.clear();
             GameMap.initMap();
-
+            score.endGame();
+            showinf.updateScore(score);
         }
     }
 
@@ -473,7 +474,8 @@ public class Game extends Application {
         GameMap.setGameLevel(GameMap.getGameLevel());
         GameMap.clear();
         GameMap.initMap();
-
+        score.endGame();
+        showinf.updateScore(score);
 
     }
 
