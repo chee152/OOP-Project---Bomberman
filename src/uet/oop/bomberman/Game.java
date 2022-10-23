@@ -8,11 +8,13 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import uet.oop.bomberman.ControlKeyboard.Keyboard;
 import uet.oop.bomberman.collision.Collision;
-import uet.oop.bomberman.entities.MovingEntity;
 import uet.oop.bomberman.entities.Entity;
+import uet.oop.bomberman.entities.MovingEntity;
 import uet.oop.bomberman.entities.bomb.Bomb;
 import uet.oop.bomberman.entities.bomb.Flame;
 import uet.oop.bomberman.entities.character.bomber.Bomber;
@@ -25,7 +27,16 @@ import uet.oop.bomberman.entities.tile.item.SpeedItem;
 import uet.oop.bomberman.entities.tile.normal.Portal;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.map.GameMap;
+import uet.oop.bomberman.menu.HelpInMenu;
+import uet.oop.bomberman.menu.Menunu;
+import uet.oop.bomberman.menu.PauseMenu;
+import uet.oop.bomberman.menu.ScoreInMenu;
+import uet.oop.bomberman.showScore.Score;
+import uet.oop.bomberman.showScore.ShowInf;
+import uet.oop.bomberman.sound.Sound;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 import java.util.*;
 
@@ -56,9 +67,17 @@ public class Game extends Application {
     public static boolean isExplosion = false;
     public static boolean isNextLv = false;
     public static boolean isGetItem = false;
+    private final TextFlow textFlow = new TextFlow();
+    private final Score score = new Score();
+    private final ShowInf showinf = new ShowInf();
 
-    public Game()
-    {
+    private final Menunu menunu = new Menunu();
+    private final PauseMenu pauseMenu = new PauseMenu();
+    private final HelpInMenu helpInMenu = new HelpInMenu();
+    //private final AboutOption aboutOption = new AboutOption();
+    private final ScoreInMenu scoreInMenu = new ScoreInMenu(score);
+    private Sound sound = new Sound();
+    public Game() throws IOException {
 
     }
 
@@ -72,16 +91,119 @@ public class Game extends Application {
 
         Scene scene = new Scene(root);
         stage.setTitle("BOMBERMAN");
+        Scene menunuScene = menunu.create();
+        Scene pauseMenuScene = pauseMenu.create();
+        Scene helpScene = helpInMenu.create();
+        //Scene aboutOptionScene = aboutOption.create();
+        Scene scoreOptionScene = scoreInMenu.create();
 
+        showinf.makeShowScore(root, textFlow);
         stage.setScene(scene);
         stage.show();
 
         boolean[] running = {false};
-
+        sound.getBgSound();
         AnimationTimer timer = new AnimationTimer()
         {
             public void handle (long l)
             {
+                menunuScene.setOnMouseReleased(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        if (Menunu.PLAY) {
+                            stage.setScene(scene);
+                            Menunu.PLAY = false;
+                            running[0] = true;
+                        }
+                        if (Menunu.HELP) {
+                            stage.setScene(helpScene);
+                        }
+                       // if (Menunu.ABOUT) {
+                         //   stage.setScene(aboutOptionScene);
+                          //  MainMenu.ABOUT = false;
+
+                        if (Menunu.SCORE) {
+                            scoreInMenu.updateScore();
+                            stage.setScene(scoreOptionScene);
+                            Menunu.SCORE = false;
+                        }
+                    }
+                });
+                helpScene.setOnMouseReleased(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        if (HelpInMenu.HELP_BACK && Menunu.HELP) {
+                            stage.setScene(menunuScene);
+                            HelpInMenu.HELP_BACK = false;
+                            Menunu.HELP = false;
+                        } else if (HelpInMenu.HELP_BACK && PauseMenu.HELP) {
+                            stage.setScene(pauseMenuScene);
+                            HelpInMenu.HELP_BACK = false;
+                           PauseMenu.HELP = false;
+                        }
+                    }
+                });
+                scoreOptionScene.setOnMouseReleased(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        if (ScoreInMenu.SCORE_BACK) {
+                            stage.setScene(menunuScene);
+                            ScoreInMenu.SCORE_BACK = false;
+                            Menunu.SCORE = false;
+                        }
+                    }
+                });
+
+                pauseMenuScene.setOnMouseReleased(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        if (PauseMenu.CONTINUE) {
+                            running[0] = true;
+                            stage.setScene(scene);
+                            Keyboard.pause = !Keyboard.pause;
+                            PauseMenu.CONTINUE = false;
+                        }
+                        if (PauseMenu.HELP) {
+                            stage.setScene(helpScene);
+                        }
+                        if (PauseMenu.RESTART) {
+                            try {
+                                createNewGame();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            running[0] = true;
+                            stage.setScene(scene);
+                            Keyboard.pause = !Keyboard.pause;
+                            PauseMenu.RESTART = false;
+                        }
+                        if (PauseMenu.MAIN_MAIN) {
+                            try {
+                                createNewGame();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            running[0] = false;
+                            stage.setScene(menunuScene);
+                            Keyboard.pause = !Keyboard.pause;
+                            PauseMenu.MAIN_MAIN = false;
+                        }
+
+                    }
+                });
+
+                pauseMenuScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+                    @Override
+                    public void handle(KeyEvent event) {
+                        if (Keyboard.pause) {
+                            running[0] = true;
+                            stage.setScene(scene);
+                            Keyboard.pause = !Keyboard.pause;
+                            PauseMenu.CONTINUE = false;
+                        }
+                    }
+                });
+
                 scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
                     @Override
                     public void handle(KeyEvent event) {
@@ -89,13 +211,19 @@ public class Game extends Application {
                         //							stage.setScene(menuScene);
                         if (running[0] && Keyboard.pause) {
                             running[0] = false;
+                            stage.setScene(pauseMenuScene);
                         }
-
                         if (running[0]) {
                             if (Keyboard.space && NUMBER_OF_BOMBS != 0) {
+                                try {
                                     createBomb();
+                                } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
                         }
-                    }}
+                    }
+
                 });
 
                 scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
@@ -111,7 +239,17 @@ public class Game extends Application {
                 });
 
                 if (running[0]) {
-
+                    try {
+                        if (isNextLv) sound.getNextLevelSound();
+                        if (isEnemyDead) sound.getEnemyDeadSound();
+                        if (isPlayerDead) sound.getPlayerDeadSound();
+                        if (isGetItem) sound.getItemSound();
+                        if (isExplosion) sound.getExplosionSound();
+                        update();
+                    } catch (IOException | UnsupportedAudioFileException | LineUnavailableException e) {
+                        e.printStackTrace();
+                    }
+                    render();
 
 
                 }
@@ -124,7 +262,9 @@ public class Game extends Application {
     }
 
 
-    private void createBomb() {
+    private void createBomb() throws UnsupportedAudioFileException, LineUnavailableException, IOException  {
+        sound = new Sound();
+        sound.getPutBomSound();
         bomberman = getBomber();
         int tmpX = (bomberman.getX() + Sprite.SCALED_SIZE / 2) / Sprite.SCALED_SIZE;
         int tmpY = (bomberman.getY() + Sprite.SCALED_SIZE / 2) / Sprite.SCALED_SIZE;
@@ -150,12 +290,15 @@ public class Game extends Application {
                 movingEntity.update();
                 if (((Enemy) movingEntity).isDestroyed()) {
                     iterator.remove();
+                    score.killEnemy();
+                    showinf.updateScore(score);
                 }
             }
         }
 
         if (!getBomber().isAlive()) {
-
+            score.endGame();
+            showinf.updateScore(score);
         }
         Objects.requireNonNull(getBomber()).update();
     }
@@ -182,7 +325,8 @@ public class Game extends Application {
             {
                 bomb.update();
                 if (!bomb.isDestroyed() && bomb.isExploding())
-                {
+                { 	cnt_time_bombsound++;
+                    isExplosion = cnt_time_bombsound == 1;
                     for (int i = 0; i<bomb.getFlameList().size();i++)
                     {
                         Flame flame = bomb.getFlameList().get(i);
@@ -239,7 +383,9 @@ public class Game extends Application {
     }
 
     //Item update khi va chạm với bomber
-
+    int cnt_time_itemsound1 = 0;
+    int cnt_time_itemsound2 = 0;
+    int cnt_time_itemsound3 = 0;
     public void itemUpdate()
     {
         if (!LayeredEntity.isEmpty())
