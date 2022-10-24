@@ -61,7 +61,7 @@ public abstract class Menu {
         vb.setAlignment(Pos.BOTTOM_CENTER);
         vb.setPadding(new Insets(20));
         vb.setSpacing(30);
-        vb.setBackground(new Background(createImage("file:res/background.jpg")));
+        vb.setBackground(new Background(createImage("file:res/BG.png")));
         return vb;
     }
 }

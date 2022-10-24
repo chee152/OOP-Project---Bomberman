@@ -43,7 +43,8 @@ import java.util.*;
 public class Game extends Application {
 
     public static final int WIDTH = 20;
-    public static final int HEIGHT = 14;
+    public static final int HEIGHT = 13;
+    public static int WIDTH_BUFFER = 0;
     private GraphicsContext gc;
     private Canvas canvas;
 
@@ -62,6 +63,7 @@ public class Game extends Application {
 
     private Bomber bomberman;
 
+    private Camera camera;
     public static boolean isEnemyDead = false;
     public static boolean isPlayerDead = false;
     public static boolean isExplosion = false;
@@ -98,6 +100,7 @@ public class Game extends Application {
         Scene scoreOptionScene = scoreInMenu.create();
 
         showinf.makeShowScore(root, textFlow);
+        camera = new Camera(0, 0);
         stage.setScene(scene);
         stage.show();
 
@@ -295,7 +298,7 @@ public class Game extends Application {
                 }
             }
         }
-
+        camera.tick(Objects.requireNonNull(getBomber()));
         if (!getBomber().isAlive()) {
             score.endGame();
             showinf.updateScore(score);
@@ -419,10 +422,36 @@ public class Game extends Application {
                     SpeedItem.pickUp = true;
                 }
             }
-            if (BombItem.pickUp)
-            {
-
+            if (FlameItem.pickUp) {
+                cnt_time_itemsound1++;
+                FlameItem.timeItem++;
+                isGetItem = cnt_time_itemsound1 == 1;
+                if (FlameItem.timeItem > 2000) {
+                    FlameItem.timeItem = 0;
+                    Game.LENGTH_OF_FLAME = 1;
+                    FlameItem.pickUp = false;
+                }
             }
+            if (SpeedItem.pickUp) {
+                cnt_time_itemsound2++;
+                isGetItem = cnt_time_itemsound2 == 1;
+                SpeedItem.timeItem++;
+                if (SpeedItem.timeItem > 2000) {
+                    SpeedItem.timeItem = 0;
+                    Bomber.setVELOCITY(2);
+                    SpeedItem.pickUp = false;
+                }
+            }
+            if (BombItem.pickUp) {
+                cnt_time_itemsound3++;
+                isGetItem = cnt_time_itemsound3 == 1;
+                BombItem.timeItem++;
+                if (BombItem.timeItem > 2000) {
+                    BombItem.timeItem = 0;
+                    NUMBER_OF_BOMBS = 1;
+                    BombItem.pickUp = false;
+                }
+                }
         }
     }
 
@@ -458,7 +487,7 @@ public class Game extends Application {
                     }
                 }
             }
-        }
+
         if (canNextLevel)
         {
             GameMap.setGameLevel(GameMap.getGameLevel()+1);
@@ -468,7 +497,7 @@ public class Game extends Application {
             showinf.updateScore(score);
         }
     }
-
+}
     public void createNewGame() throws IOException
     {
         GameMap.setGameLevel(GameMap.getGameLevel());
@@ -484,6 +513,7 @@ public class Game extends Application {
     public void render()
     {
         gc.clearRect(0,0,canvas.getWidth(),canvas.getHeight());
+        gc.translate(-camera.getX(), 0);
         for (Entity stillObject : stillObjects)
         {
             stillObject.render(gc);
@@ -505,30 +535,24 @@ public class Game extends Application {
             {
                 movingEntity.render(gc);
             }
-        }
+        } gc.translate(camera.getX(), 0);
 
     }
 
-    public void bombRender()
-    {
-        for (Bomb bomb : bombList)
-        {
-            if (bomb!=null)
-            {
-                if (!bomb.isDestroyed())
-                {
+    private void bombRender() {
+        for (Bomb bomb : bombList) {
+            if (bomb != null) {
+                if (!bomb.isDestroyed()) {
                     bomb.render(gc);
-                    if (bomb.isExploding())
-                    {
-                        for (int i = 0;i<bomb.getFlameList().size();i++)
-                        {
-                            bomb.getFlameList().get(i).render(gc);
-                        }
+                }
+                if (!bomb.isDestroyed() && bomb.isExploding()) {
+                    for (int i = 0; i < bomb.getFlameList().size(); i++) {
+                        bomb.getFlameList().get(i).render(gc);
                     }
                 }
             }
-
         }
+//
     }
 
     /**
