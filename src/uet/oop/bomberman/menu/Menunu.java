@@ -17,7 +17,7 @@ public class Menunu extends Menu {
 
     public static boolean PLAY = false;
     public static boolean HELP = false;
-    public static boolean ABOUT = false;
+
     public static boolean SCORE = false;
 
     @Override
@@ -27,18 +27,17 @@ public class Menunu extends Menu {
 
         Text playText = new Text("Play");
         Text helpText = new Text("Help");
-        Text aboutText = new Text("About");
+
         Text scoreText = new Text("High Score");
 
         customText(playText);
         customText(helpText);
-        customText(aboutText);
         customText(scoreText);
 
         vb.getChildren().add(playText);
         vb.getChildren().add(scoreText);
         vb.getChildren().add(helpText);
-        vb.getChildren().add(aboutText);
+
 
         Scene menuScene = new Scene(vb, Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
 
@@ -54,11 +53,7 @@ public class Menunu extends Menu {
             }
         };
 
-        EventHandler<MouseEvent> aboutHandle = new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent event) {
-                aboutHandle(event, aboutText);
-            }
-        };
+
 
         EventHandler<MouseEvent> scoreHandle = new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
@@ -74,9 +69,6 @@ public class Menunu extends Menu {
         helpText.addEventFilter(MouseEvent.MOUSE_EXITED_TARGET, helpHandle);
         helpText.addEventFilter(MouseEvent.MOUSE_PRESSED, helpHandle);
 
-        aboutText.addEventFilter(MouseEvent.MOUSE_ENTERED, aboutHandle);
-        aboutText.addEventFilter(MouseEvent.MOUSE_EXITED_TARGET, aboutHandle);
-        aboutText.addEventFilter(MouseEvent.MOUSE_PRESSED, aboutHandle);
 
         scoreText.addEventFilter(MouseEvent.MOUSE_ENTERED, scoreHandle);
         scoreText.addEventFilter(MouseEvent.MOUSE_EXITED_TARGET, scoreHandle);
@@ -105,10 +97,7 @@ public class Menunu extends Menu {
             text.setStyle("-fx-font-size:60");
         } else if (event.getEventType() == MouseEvent.MOUSE_EXITED) {
             text.setStyle("-fx-font-size:45");
-        } else if (event.getEventType() == MouseEvent.MOUSE_PRESSED) {
-//			System.out.println("chon");
-            ABOUT = true;
-            text.setStyle("-fx-font-size:45");
+
         } else {
             text.setStyle("-fx-font-size:45");
         }

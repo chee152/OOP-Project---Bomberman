@@ -23,7 +23,7 @@ public class PauseMenu extends Menu {
 
     @Override
     public Scene create() {
-        VBox vb = initVBox();
+        VBox vb = initVBoxPause();
 
         Text continueText = new Text("Continue");
         Text helpText = new Text("Help");

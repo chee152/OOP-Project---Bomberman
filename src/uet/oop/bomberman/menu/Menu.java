@@ -37,7 +37,7 @@ public abstract class Menu {
         ds.setOffsetY(3.0f);
         ds.setColor(Color.color(0.4f, 0.4f, 0.4f));
 
-        Font font = Font.loadFont("file:res/emulogic.ttf", 45);
+        Font font = Font.loadFont("file:res/emulogic.ttf", 40);
 
         text.setEffect(ds);
         text.setFont(font);
@@ -65,4 +65,37 @@ public abstract class Menu {
         vb.setBackground(new Background(createImage("file:res/bgr.jpg")));
         return vb;
     }
+    protected VBox initVBoxPause() {
+        VBox vb = new VBox();
+        // vb.setAlignment(Pos.BOTTOM_CENTER);
+        vb.setAlignment(Pos.TOP_LEFT);
+        vb.setPadding(new Insets(20));
+        vb.setSpacing(30);
+        vb.setBackground(new Background(createImage("file:res/pausePic.png")));
+        return vb;
+    }
+    protected void customTextPause(Text text) {
+        DropShadow ds = new DropShadow();
+        ds.setOffsetY(3.0f);
+        ds.setColor(Color.color(0.4f, 0.4f, 0.4f));
+
+        Font font = Font.loadFont("file:res/emulogic.ttf", 40);
+
+        text.setEffect(ds);
+        text.setFont(font);
+
+        text.setFill(new LinearGradient(0, 0, 1, 1, true,
+                CycleMethod.REFLECT,
+                new Stop(0.0, Color.WHITE),
+                new Stop(1.0, Color.GOLD)));
+        text.setStroke(Color.BLUEVIOLET);
+        text.setStrokeWidth(0.5);
+
+        DropShadow shadow = new DropShadow();
+        shadow.setOffsetY(5.0);
+        Reflection r = new Reflection();
+        r.setFraction(0.6f);
+        text.setEffect(r);
+    }
+
 }
