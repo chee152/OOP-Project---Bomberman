@@ -31,7 +31,7 @@ public abstract class MovingEntity extends Entity{
         //thì Bomber chết và ngược lại
         if (!(0<=dx && dx <= Sprite.SCALED_SIZE && dy>=0 && dy<=Sprite.SCALED_SIZE))
         {
-            bomb.canPass = false;
+            bomb._allowedToPassThru = false;
         }
         return false;
     }

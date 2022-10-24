@@ -43,8 +43,8 @@ public class subAI extends AI{
     }
     public int verticalDirection()
     {
-        if (bomber.getY() < enemy.getY()) return 2; //đi lên
-        if (bomber.getY() > enemy.getY()) return 0; // đi xuống
+        if (bomber.getY() < enemy.getY()) return 0; //đi lên
+        if (bomber.getY() > enemy.getY()) return 2; // đi xuống
         return -1;
     }
     public int horizontalDirection()

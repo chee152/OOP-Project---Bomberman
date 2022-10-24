@@ -96,10 +96,10 @@ public abstract class Character extends MovingEntity {
     }
 
     protected boolean canGoUp(int xpos, int ypos) {
-        x1_temp = (ypos - pixel) / SIZE * Sprite.SCALED_SIZE * Sprite.SCALED_SIZE;
-        y1_temp = (xpos + pixel) / SIZE * Sprite.SCALED_SIZE * Sprite.SCALED_SIZE;
+        x1_temp = (ypos - pixel) /  Sprite.SCALED_SIZE * Sprite.SCALED_SIZE;
+        y1_temp = (xpos + pixel) /Sprite.SCALED_SIZE * Sprite.SCALED_SIZE;
 
-        x2_temp = (ypos - pixel) / SIZE * Sprite.SCALED_SIZE * Sprite.SCALED_SIZE;
+        x2_temp = (ypos - pixel) / Sprite.SCALED_SIZE * Sprite.SCALED_SIZE;
         y2_temp = (xpos + SIZE - pixel) / Sprite.SCALED_SIZE * Sprite.SCALED_SIZE;
 
         return getImpassableEntityAt(y1_temp, x1_temp) instanceof Grass

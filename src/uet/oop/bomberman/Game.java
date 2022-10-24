@@ -93,6 +93,7 @@ public class Game extends Application {
 
         Scene scene = new Scene(root);
         stage.setTitle("BOMBERMAN");
+
         Scene menunuScene = menunu.create();
         Scene pauseMenuScene = pauseMenu.create();
         Scene helpScene = helpInMenu.create();
@@ -101,7 +102,8 @@ public class Game extends Application {
 
         showinf.makeShowScore(root, textFlow);
         camera = new Camera(0, 0);
-        stage.setScene(scene);
+
+        stage.setScene(menunuScene);
         stage.show();
 
         boolean[] running = {false};
@@ -241,6 +243,7 @@ public class Game extends Application {
                     }
                 });
 
+                //sound
                 if (running[0]) {
                     try {
                         if (isNextLv) sound.getNextLevelSound();
@@ -348,6 +351,15 @@ public class Game extends Application {
                                     ((Enemy) current).enemyDie();
                                     cnt_time_enemydead++;
                                     isEnemyDead = cnt_time_enemydead == 1;
+                                }
+                            }
+                            if (current instanceof Bomber)
+                            {
+                                if (Collision.CheckCollision(current, flame))
+                                {
+                                    ((Bomber) current).setAlive(false);
+                                    cnt_time_playerdead++;
+                                    isPlayerDead = cnt_time_playerdead == 1;
                                 }
                             }
                         }
@@ -514,6 +526,8 @@ public class Game extends Application {
     {
         gc.clearRect(0,0,canvas.getWidth(),canvas.getHeight());
         gc.translate(-camera.getX(), 0);
+
+
         for (Entity stillObject : stillObjects)
         {
             stillObject.render(gc);

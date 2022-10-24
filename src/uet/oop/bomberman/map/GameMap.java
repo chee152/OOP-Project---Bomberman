@@ -42,12 +42,12 @@ public class GameMap {
         return widthMap;
     }
 
-    public static void creatMap() throws IOException
+    /*public static void createMap() throws IOException
     {
         System.out.println("__");
         //cập nhật level rồi tạo
         createMap(getGameLevel());
-    }
+    }*/
     public static void initMap() throws IOException
     {
         Game.entityList = new ArrayList<>();
@@ -75,7 +75,6 @@ public class GameMap {
     }
     public static void fileLoad(int gameLevel) throws IOException
     {
-
         String path = String.format("res/levels/level%d.txt", gameLevel);
         FileReader filePath = new FileReader(path);
         Scanner reader = new Scanner(filePath);
@@ -84,14 +83,22 @@ public class GameMap {
         heightMap = reader.nextInt();
         widthMap = reader.nextInt();
 
+        Game.WIDTH_BUFFER = widthMap - Game.WIDTH - 2;
+
         map = new char[heightMap][widthMap];
         reader.nextLine();
 
-        for (int i = 0; i<heightMap;i++)
+        /*for (int i = 0; i<heightMap;i++)
         {
             String line = reader.nextLine();
-            for (int j =0;j<heightMap;j++)
+            for (int j = 0;j < 30; j++)
             {
+                map[i][j] = line.charAt(j);
+            }
+        }*/
+        for (int i = 0; i < heightMap; i++) {
+            String line = reader.nextLine();
+            for (int j = 0; j < widthMap-1; j++) {
                 map[i][j] = line.charAt(j);
             }
         }

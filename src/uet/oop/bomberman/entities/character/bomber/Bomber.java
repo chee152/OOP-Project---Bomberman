@@ -97,11 +97,41 @@ public class Bomber extends Character {
     {
         if (isAlive())
         {
-            int dx = 0, dy = 0;
+            int dx = 0;
+            int dy = 0;
             if (Keyboard.up)
             {
-
+                if (canGoUp(x,y))
+                {
+                    dy--;
+                }
             }
+            if (Keyboard.down)
+            {
+                if (canGoDown(x,y))
+                {
+                    dy++;
+                }
+            }
+            if (Keyboard.left)
+            {
+                if (canGoLeft(x,y))
+                {
+                    dx--;
+                }
+            }
+            if (Keyboard.right)
+            {
+                if (canGoRight(x,y))
+                {
+                    dx++;
+                }
+            }
+
+            //di chuyển
+
+            x += dx * VELOCITY;
+            y += dy * VELOCITY;
         }
     }
 }

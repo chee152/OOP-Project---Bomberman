@@ -14,7 +14,7 @@ public class Bomb extends MovingEntity {
     private long timeToExplode;
     private boolean exploding = false;
     private boolean destroyed = false;
-    public boolean canPass = true;
+    public boolean _allowedToPassThru = true;
 
     private final List<Flame> flameList = new ArrayList<>();
 

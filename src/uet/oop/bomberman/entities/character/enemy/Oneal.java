@@ -74,9 +74,13 @@ public class Oneal extends Enemy{
         direction = AI.calDirection();
         if (!this.isDie)
         {
-            if (canGoUp(x, y)) {
-                y -= speed;
+            if (direction == 0)
+            {
+                if (canGoUp(x, y)) {
+                    y -= speed;
+                }
             }
+
             else if (direction == 1) {
                 if (canGoRight(x, y)) {
                     x += speed;

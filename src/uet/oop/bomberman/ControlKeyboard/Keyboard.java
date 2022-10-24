@@ -10,7 +10,7 @@ public class Keyboard {
     {
         if (event.getEventType() == KeyEvent.KEY_PRESSED)
         {
-            switch (event.getCode())
+            /*switch (event.getCode())
             {
                 case UP: up = true;
                 case W: up = true;
@@ -29,8 +29,23 @@ public class Keyboard {
                     right = false;
 
                 }
+            }*/
+            if (event.getCode() == KeyCode.UP) {
+                up = true;
+            } else if (event.getCode() == KeyCode.LEFT) {
+                left = true;
+            } else if (event.getCode() == KeyCode.DOWN) {
+                down = true;
+            } else if (event.getCode() == KeyCode.RIGHT) {
+                right = true;
             }
+        } else {
+            up = false;
+            left = false;
+            down= false;
+            right = false;
         }
+
 
         if (event.getEventType() == KeyEvent.KEY_PRESSED)
         {
@@ -38,7 +53,7 @@ public class Keyboard {
             {
                 space = true;
             } else if (event.getCode() == KeyCode.ESCAPE) {
-                 pause = true;
+                 pause = !pause;
             } else
             {
                 space = false;
