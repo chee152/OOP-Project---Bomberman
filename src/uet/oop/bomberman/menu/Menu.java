@@ -74,6 +74,7 @@ public abstract class Menu {
         vb.setBackground(new Background(createImage("file:res/pausePic.png")));
         return vb;
     }
+
     protected void customTextPause(Text text) {
         DropShadow ds = new DropShadow();
         ds.setOffsetY(3.0f);

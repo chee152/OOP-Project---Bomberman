@@ -14,6 +14,7 @@ public abstract class Enemy extends Character {
     }
 
     public int speed = Game.SPEED_OF_ENEMY;
+    public int speedDoll=Game.SPEED_OF_DOLL;
     protected int direction = -1;
     public boolean isDie = false;
     protected AI AI;

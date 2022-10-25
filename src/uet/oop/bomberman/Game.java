@@ -50,7 +50,7 @@ public class Game extends Application {
 
     public static int LENGTH_OF_FLAME = 1;
     public static int NUMBER_OF_BOMBS = 1;
-
+    public static final int SPEED_OF_DOLL=3;
     public static final int SPEED_OF_ENEMY = 1;
 
     public static final int TIME_TO_DISAPPEAR = 100;

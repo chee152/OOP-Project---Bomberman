@@ -4,6 +4,7 @@ import uet.oop.bomberman.Game;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.character.bomber.Bomber;
 import uet.oop.bomberman.entities.character.enemy.Balloom;
+import uet.oop.bomberman.entities.character.enemy.Doll;
 import uet.oop.bomberman.entities.character.enemy.Oneal;
 import uet.oop.bomberman.entities.tile.DestroyBrick;
 import uet.oop.bomberman.entities.tile.item.BombItem;
@@ -16,9 +17,10 @@ import uet.oop.bomberman.graphics.Sprite;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
+import java.util.Stack;
 
 public class GameMap {
     private static int gameLevel = 1;
@@ -169,6 +171,12 @@ public class GameMap {
                         Oneal oneal = new Oneal(j, i, Sprite.oneal_right1.getFxImage());
                         obj = new Grass(j, i, Sprite.grass.getFxImage());
                         Game.entityList.add(oneal);
+                        Game.stillObjects.add(obj);
+                        break;
+                    case '3':
+                        Doll doll = new Doll(j, i, Sprite.doll_right1.getFxImage());
+                        obj = new Grass(j, i, Sprite.grass.getFxImage());
+                        Game.entityList.add(doll);
                         Game.stillObjects.add(obj);
                         break;
                     default:

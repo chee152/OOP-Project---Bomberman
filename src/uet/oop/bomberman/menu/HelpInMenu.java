@@ -23,21 +23,19 @@ public class HelpInMenu extends Menu {
     @Override
     public Scene create() {
 
-        VBox vb = initVBox();
+        VBox vb = initVBoxPause();
 
         Text backText = new Text("Back");
 
-        String str = " Bomberman Game\n"
-                + "  OOP project\n"
-                + " Contributions\n"
-                + " xxxxxx\n"
-                + " yyyyyyy\n";
+        String str = " Use arrows on keyboard to move bomberman\n";
+
+
         TextFlow area = new TextFlow();
 
         Text info = new Text(str);
 
-        customText(backText);
-        customText(info);
+        customTextPause(backText);
+        customTextPause(info);
         info.setStyle("-fx-font-size:25");
         info.setEffect(null);
 

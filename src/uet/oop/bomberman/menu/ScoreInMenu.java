@@ -40,13 +40,13 @@ public class ScoreInMenu extends Menu {
 
     @Override
     public Scene create() {
-        box = initVBox();
+        box = initVBoxPause();
         backText = new Text("Back");
         area = new TextFlow();
         scoreinf = new Text(str);
 
-        customText(backText);
-        customText(scoreinf);
+        customTextPause(backText);
+        customTextPause(scoreinf);
 //		scoreInfo.setStyle("-fx-font-size:25");
         scoreinf.setEffect(null);
 

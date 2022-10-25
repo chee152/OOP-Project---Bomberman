@@ -30,10 +30,10 @@ public class PauseMenu extends Menu {
         Text restartText = new Text("Restart");
         Text mainMenu = new Text("Main Menu");
 
-        customText(continueText);
-        customText(helpText);
-        customText(restartText);
-        customText(mainMenu);
+        customTextPause(continueText);
+        customTextPause(helpText);
+        customTextPause(restartText);
+        customTextPause(mainMenu);
 
 
         vb.getChildren().add(continueText);
