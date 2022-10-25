@@ -39,6 +39,7 @@ public class Sound {
 
     public void getBgSound() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         playSound(listFile.get("Background"));
+        loop();
     }
 
     public void getPutBomSound() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
@@ -68,6 +69,9 @@ public class Sound {
     public void getItemSound() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         playSound(listFile.get("PowerUp"));
         Game.isGetItem = false;
+    }
+    public void loop() {
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
     }
 }
 

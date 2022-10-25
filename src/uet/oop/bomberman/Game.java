@@ -42,9 +42,9 @@ import java.util.*;
 
 public class Game extends Application {
 
-    public static final int WIDTH = 20;
-    public static final int HEIGHT = 13;
-    public static int WIDTH_BUFFER = 0;
+    public static final int WIDTH = 32;
+    public static final int HEIGHT = 14;
+   // public static int WIDTH_BUFFER = 0;
     private GraphicsContext gc;
     private Canvas canvas;
 
@@ -63,7 +63,7 @@ public class Game extends Application {
 
     private Bomber bomberman;
 
-    private Camera camera;
+   // private Camera camera;
     public static boolean isEnemyDead = false;
     public static boolean isPlayerDead = false;
     public static boolean isExplosion = false;
@@ -101,7 +101,7 @@ public class Game extends Application {
         Scene scoreOptionScene = scoreInMenu.create();
 
         showinf.makeShowScore(root, textFlow);
-        camera = new Camera(0, 0);
+        //camera = new Camera(0, 0);
 
         stage.setScene(menunuScene);
         stage.show();
@@ -301,7 +301,7 @@ public class Game extends Application {
                 }
             }
         }
-        camera.tick(Objects.requireNonNull(getBomber()));
+       // camera.tick(Objects.requireNonNull(getBomber()));
         if (!getBomber().isAlive()) {
             score.endGame();
             showinf.updateScore(score);
@@ -525,7 +525,7 @@ public class Game extends Application {
     public void render()
     {
         gc.clearRect(0,0,canvas.getWidth(),canvas.getHeight());
-        gc.translate(-camera.getX(), 0);
+        //gc.translate(-camera.getX(), 0);
 
 
         for (Entity stillObject : stillObjects)
@@ -549,7 +549,7 @@ public class Game extends Application {
             {
                 movingEntity.render(gc);
             }
-        } gc.translate(camera.getX(), 0);
+        } //gc.translate(camera.getX(), 0);
 
     }
 
