@@ -411,7 +411,7 @@ public class Game extends Application {
             for (Integer value : getLayeredEntitySet())
             {
                 if (LayeredEntity.get(value).peek() instanceof BombItem
-                        && Collision.checkCollisionWithBuffer(Objects.requireNonNull(getBomber()),
+                        && Collision.CollisionHasItem(Objects.requireNonNull(getBomber()),
                         LayeredEntity.get(value).peek()))
                 {
                     LayeredEntity.get(value).pop();
@@ -420,7 +420,7 @@ public class Game extends Application {
                     BombItem.pickUp = true;
                 }
                 if (LayeredEntity.get(value).peek() instanceof FlameItem
-                && Collision.checkCollisionWithBuffer(Objects.requireNonNull(getBomber()),
+                && Collision.CollisionHasItem(Objects.requireNonNull(getBomber()),
                         LayeredEntity.get(value).peek()))
                 {
                     Game.LENGTH_OF_FLAME++;
@@ -430,7 +430,7 @@ public class Game extends Application {
                 }
 
                 if (LayeredEntity.get(value).peek() instanceof SpeedItem
-                        && Collision.checkCollisionWithBuffer(Objects.requireNonNull(getBomber()), LayeredEntity.get(value).peek())) {
+                        && Collision.CollisionHasItem(Objects.requireNonNull(getBomber()), LayeredEntity.get(value).peek())) {
                     LayeredEntity.get(value).pop();
                     Bomber.setVELOCITY(3);
                     SpeedItem.timeItem = 0;
@@ -496,7 +496,7 @@ public class Game extends Application {
                 for (Integer value : getLayeredEntitySet()) {
 
                     if (LayeredEntity.get(value).peek() instanceof Portal
-                            && Collision.checkCollisionWithBuffer(Objects.requireNonNull(getBomber()), LayeredEntity.get(value).peek())) {
+                            && Collision.CollisionHasItem(Objects.requireNonNull(getBomber()), LayeredEntity.get(value).peek())) {
                         canNextLevel = true;
                         break;
                     }
