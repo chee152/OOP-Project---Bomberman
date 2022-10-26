@@ -86,7 +86,7 @@ public class Game extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE*HEIGHT );
+        canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH  , Sprite.SCALED_SIZE * HEIGHT );
         gc = canvas.getGraphicsContext2D();
 
         Group root = new Group();
@@ -124,10 +124,6 @@ public class Game extends Application {
                         if (MainMenuStage.HELP) {
                             stage.setScene(helpScene);
                         }
-                       // if (Menunu.ABOUT) {
-                         //   stage.setScene(aboutOptionScene);
-                          //  MainMenu.ABOUT = false;
-
                         if (MainMenuStage.SCORE) {
                             scoreStage.updateScore();
                             stage.setScene(scoreOptionScene);
@@ -214,7 +210,6 @@ public class Game extends Application {
                     @Override
                     public void handle(KeyEvent event) {
                         Keyboard.setInputKeyEvent(event);
-                        //							stage.setScene(menuScene);
                         if (running[0] && Keyboard.pause) {
                             running[0] = false;
                             stage.setScene(pauseMenuScene);
@@ -235,9 +230,7 @@ public class Game extends Application {
                 scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
                     @Override
                     public void handle(KeyEvent event) {
-                        //							stage.setScene(menuScene);
                         running[0] = !Keyboard.pause;
-
                         if (running[0]) {
                             Keyboard.setInputKeyEvent(event);
                         }
@@ -273,8 +266,8 @@ public class Game extends Application {
         sound = new Sound();
         sound.getPutBomSound();
         bomberman = getBomber();
-        int tmpX = (bomberman.getX() + Sprite.SCALED_SIZE / 2) / Sprite.SCALED_SIZE;
-        int tmpY = (bomberman.getY() + Sprite.SCALED_SIZE / 2) / Sprite.SCALED_SIZE;
+        int tmpX = (bomberman.getX() + Sprite.SCALED_SIZE / 2)/ Sprite.SCALED_SIZE;
+        int tmpY = (bomberman.getY() + Sprite.SCALED_SIZE / 2)/ Sprite.SCALED_SIZE;
         Bomb bomb = new Bomb(tmpX, tmpY, Sprite.bomb.getFxImage());
         bombList.add(bomb);
         NUMBER_OF_BOMBS--;

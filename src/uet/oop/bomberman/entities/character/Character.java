@@ -58,7 +58,7 @@ public abstract class Character extends MovingEntity {
         return entity;
     }
 
-    //Kiểm tra xem tại vị trí hiện tại đối tượng có thể đi sang tri đợc không
+    //Kiểm tra xem tại vị trí hiện tại đối tượng có thể đi sang trái được không
 
     protected boolean canGoLeft(int xpos, int ypos)
     {

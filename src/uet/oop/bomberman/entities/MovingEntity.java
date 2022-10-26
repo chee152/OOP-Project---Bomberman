@@ -17,7 +17,7 @@ public abstract class MovingEntity extends Entity{
     protected final int MAX_ANIMATE = 7500;
     protected final int SIZE = Sprite.SCALED_SIZE - 6;
     protected int x1_temp, x2_temp, y1_temp, y2_temp;
-    protected final int pixel = 1;
+    protected final int pixel = 7;
 
     //check va chạm với bomb
     public boolean bombCollision(Bomb bomb, MovingEntity movingEntity)
