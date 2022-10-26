@@ -27,7 +27,9 @@ public class HelpInMenu extends Menu {
 
         Text backText = new Text("Back");
 
-        String str = " Use arrows on keyboard to move bomberman\n";
+        String str = " Use arrows on keyboard to move bomberman\n"
+                +" Esc : pause";
+
 
 
         TextFlow area = new TextFlow();
