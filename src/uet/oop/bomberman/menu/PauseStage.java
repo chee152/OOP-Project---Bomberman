@@ -10,40 +10,43 @@ import uet.oop.bomberman.graphics.Sprite;
 import static uet.oop.bomberman.Game.HEIGHT;
 import static uet.oop.bomberman.Game.WIDTH;
 
-public class Menunu extends Menu {
-    public Menunu() {
+public class PauseStage extends Menu {
+    public static boolean CONTINUE = false;
+    public static boolean HELP = false;
+    public static boolean RESTART = false;
+    public static boolean MAIN_MAIN = false;
+
+
+    public PauseStage() {
         create();
     }
 
-    public static boolean PLAY = false;
-    public static boolean HELP = false;
-
-    public static boolean SCORE = false;
-
     @Override
-
     public Scene create() {
-        VBox vb = initVBox();
+        VBox vb = initVBoxPause();
 
-        Text playText = new Text("Play");
+        Text continueText = new Text("Continue");
         Text helpText = new Text("Help");
+        Text restartText = new Text("Restart");
+        Text mainMenu = new Text("Main Menu");
 
-        Text scoreText = new Text("High Score");
+        customTextPause(continueText);
+        customTextPause(helpText);
+        customTextPause(restartText);
+        customTextPause(mainMenu);
 
-        customText(playText);
-        customText(helpText);
-        customText(scoreText);
 
-        vb.getChildren().add(playText);
-        vb.getChildren().add(scoreText);
+        vb.getChildren().add(continueText);
+        vb.getChildren().add(restartText);
+        vb.getChildren().add(mainMenu);
         vb.getChildren().add(helpText);
 
 
-        Scene menuScene = new Scene(vb, Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
+        Scene pauseMenuScene = new Scene(vb, Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
 
-        EventHandler<MouseEvent> playHandle = new EventHandler<MouseEvent>() {
+        EventHandler<MouseEvent> continueHandle = new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
-                playHandle(event, playText);
+                continueHandle(event, continueText);
             }
         };
 
@@ -53,38 +56,45 @@ public class Menunu extends Menu {
             }
         };
 
-
-
-        EventHandler<MouseEvent> scoreHandle = new EventHandler<MouseEvent>() {
+        EventHandler<MouseEvent> restartHandle = new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
-                scoreHandle(event, scoreText);
+                restartHandle(event, restartText);
             }
         };
 
-        playText.addEventFilter(MouseEvent.MOUSE_ENTERED, playHandle);
-        playText.addEventFilter(MouseEvent.MOUSE_EXITED_TARGET, playHandle);
-        playText.addEventFilter(MouseEvent.MOUSE_PRESSED, playHandle);
+        EventHandler<MouseEvent> mainMenuHanlde = new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent event) {
+                mainMenuHanlde(event, mainMenu);
+            }
+        };
+
+        continueText.addEventFilter(MouseEvent.MOUSE_ENTERED, continueHandle);
+        continueText.addEventFilter(MouseEvent.MOUSE_EXITED_TARGET, continueHandle);
+        continueText.addEventFilter(MouseEvent.MOUSE_PRESSED, continueHandle);
 
         helpText.addEventFilter(MouseEvent.MOUSE_ENTERED, helpHandle);
         helpText.addEventFilter(MouseEvent.MOUSE_EXITED_TARGET, helpHandle);
         helpText.addEventFilter(MouseEvent.MOUSE_PRESSED, helpHandle);
 
+        restartText.addEventFilter(MouseEvent.MOUSE_ENTERED, restartHandle);
+        restartText.addEventFilter(MouseEvent.MOUSE_EXITED_TARGET, restartHandle);
+        restartText.addEventFilter(MouseEvent.MOUSE_PRESSED, restartHandle);
 
-        scoreText.addEventFilter(MouseEvent.MOUSE_ENTERED, scoreHandle);
-        scoreText.addEventFilter(MouseEvent.MOUSE_EXITED_TARGET, scoreHandle);
-        scoreText.addEventFilter(MouseEvent.MOUSE_PRESSED, scoreHandle);
+        mainMenu.addEventFilter(MouseEvent.MOUSE_ENTERED, mainMenuHanlde);
+        mainMenu.addEventFilter(MouseEvent.MOUSE_EXITED_TARGET, mainMenuHanlde);
+        mainMenu.addEventFilter(MouseEvent.MOUSE_PRESSED, mainMenuHanlde);
 
-        return menuScene;
+        return pauseMenuScene;
     }
 
-    private void scoreHandle(MouseEvent event, Text text) {
+    private static void mainMenuHanlde(MouseEvent event, Text text) {
         if (event.getEventType() == MouseEvent.MOUSE_ENTERED) {
             text.setStyle("-fx-font-size:60");
-        } else if (event.getEventType() == MouseEvent.MOUSE_EXITED) {
+        } else if (event.getEventType() == MouseEvent.MOUSE_EXITED_TARGET) {
             text.setStyle("-fx-font-size:45");
         } else if (event.getEventType() == MouseEvent.MOUSE_PRESSED) {
 //			System.out.println("chon");
-            SCORE = true;
+            MAIN_MAIN = true;
             text.setStyle("-fx-font-size:45");
         } else {
             text.setStyle("-fx-font-size:45");
@@ -92,12 +102,15 @@ public class Menunu extends Menu {
     }
 
 
-    private static void aboutHandle(MouseEvent event, Text text) {
+    private static void restartHandle(MouseEvent event, Text text) {
         if (event.getEventType() == MouseEvent.MOUSE_ENTERED) {
             text.setStyle("-fx-font-size:60");
-        } else if (event.getEventType() == MouseEvent.MOUSE_EXITED) {
+        } else if (event.getEventType() == MouseEvent.MOUSE_EXITED_TARGET) {
             text.setStyle("-fx-font-size:45");
-
+        } else if (event.getEventType() == MouseEvent.MOUSE_PRESSED) {
+            RESTART = true;
+//			System.out.println("chon");
+            text.setStyle("-fx-font-size:45");
         } else {
             text.setStyle("-fx-font-size:45");
         }
@@ -117,18 +130,20 @@ public class Menunu extends Menu {
         }
     }
 
-    private static void playHandle(MouseEvent event, Text text) {
+    private static void continueHandle(MouseEvent event, Text text) {
         if (event.getEventType() == MouseEvent.MOUSE_ENTERED) {
             text.setStyle("-fx-font-size:60");
         } else if (event.getEventType() == MouseEvent.MOUSE_EXITED_TARGET) {
             text.setStyle("-fx-font-size:45");
         } else if (event.getEventType() == MouseEvent.MOUSE_PRESSED) {
 //			System.out.println("chon");
-            PLAY = true;
+            CONTINUE = true;
             text.setStyle("-fx-font-size:45");
         } else {
             text.setStyle("-fx-font-size:45");
         }
     }
 
+
 }
+

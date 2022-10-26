@@ -15,7 +15,7 @@ import java.io.IOException;
 import static uet.oop.bomberman.Game.HEIGHT;
 import static uet.oop.bomberman.Game.WIDTH;
 
-public class ScoreInMenu extends Menu {
+public class ScoreStage extends Menu {
     public static boolean SCORE_BACK = false;
     private final Score score;
     private String str = "0";
@@ -24,7 +24,7 @@ public class ScoreInMenu extends Menu {
     private Text scoreinf;
     private TextFlow area;
 
-    public ScoreInMenu(Score score) throws IOException {
+    public ScoreStage(Score score) throws IOException {
         this.score = score;
         create();
     }

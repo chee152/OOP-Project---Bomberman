@@ -12,11 +12,11 @@ import uet.oop.bomberman.graphics.Sprite;
 import static uet.oop.bomberman.Game.HEIGHT;
 import static uet.oop.bomberman.Game.WIDTH;
 
-public class HelpInMenu extends Menu {
+public class HelpStage extends Menu {
 
     public static boolean HELP_BACK = false;
 
-    public HelpInMenu() {
+    public HelpStage() {
         create();
     }
 

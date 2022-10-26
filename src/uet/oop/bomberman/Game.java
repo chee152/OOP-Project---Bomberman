@@ -27,10 +27,10 @@ import uet.oop.bomberman.entities.tile.item.SpeedItem;
 import uet.oop.bomberman.entities.tile.normal.Portal;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.map.GameMap;
-import uet.oop.bomberman.menu.HelpInMenu;
-import uet.oop.bomberman.menu.Menunu;
-import uet.oop.bomberman.menu.PauseMenu;
-import uet.oop.bomberman.menu.ScoreInMenu;
+import uet.oop.bomberman.menu.HelpStage;
+import uet.oop.bomberman.menu.MainMenuStage;
+import uet.oop.bomberman.menu.PauseStage;
+import uet.oop.bomberman.menu.ScoreStage;
 import uet.oop.bomberman.showScore.Score;
 import uet.oop.bomberman.showScore.ShowInf;
 import uet.oop.bomberman.sound.Sound;
@@ -76,11 +76,11 @@ public class Game extends Application {
     private final Score score = new Score();
     private final ShowInf showinf = new ShowInf();
 
-    private final Menunu menunu = new Menunu();
-    private final PauseMenu pauseMenu = new PauseMenu();
-    private final HelpInMenu helpInMenu = new HelpInMenu();
+    private final MainMenuStage mainMenuStage = new MainMenuStage();
+    private final PauseStage pauseStage = new PauseStage();
+    private final HelpStage helpStage = new HelpStage();
     //private final AboutOption aboutOption = new AboutOption();
-    private final ScoreInMenu scoreInMenu = new ScoreInMenu(score);
+    private final ScoreStage scoreStage = new ScoreStage(score);
     private Sound sound = new Sound();
     public Game() throws IOException {
 
@@ -97,11 +97,11 @@ public class Game extends Application {
         Scene scene = new Scene(root);
         stage.setTitle("BOMBERMAN");
 
-        Scene menunuScene = menunu.create();
-        Scene pauseMenuScene = pauseMenu.create();
-        Scene helpScene = helpInMenu.create();
+        Scene menunuScene = mainMenuStage.create();
+        Scene pauseMenuScene = pauseStage.create();
+        Scene helpScene = helpStage.create();
         //Scene aboutOptionScene = aboutOption.create();
-        Scene scoreOptionScene = scoreInMenu.create();
+        Scene scoreOptionScene = scoreStage.create();
 
         showinf.makeShowScore(root, textFlow);
         //camera = new Camera(0, 0);
@@ -118,46 +118,46 @@ public class Game extends Application {
                 menunuScene.setOnMouseReleased(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
-                        if (Menunu.PLAY) {
+                        if (MainMenuStage.PLAY) {
                             stage.setScene(scene);
-                            Menunu.PLAY = false;
+                            MainMenuStage.PLAY = false;
                             running[0] = true;
                         }
-                        if (Menunu.HELP) {
+                        if (MainMenuStage.HELP) {
                             stage.setScene(helpScene);
                         }
                        // if (Menunu.ABOUT) {
                          //   stage.setScene(aboutOptionScene);
                           //  MainMenu.ABOUT = false;
 
-                        if (Menunu.SCORE) {
-                            scoreInMenu.updateScore();
+                        if (MainMenuStage.SCORE) {
+                            scoreStage.updateScore();
                             stage.setScene(scoreOptionScene);
-                            Menunu.SCORE = false;
+                            MainMenuStage.SCORE = false;
                         }
                     }
                 });
                 helpScene.setOnMouseReleased(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
-                        if (HelpInMenu.HELP_BACK && Menunu.HELP) {
+                        if (HelpStage.HELP_BACK && MainMenuStage.HELP) {
                             stage.setScene(menunuScene);
-                            HelpInMenu.HELP_BACK = false;
-                            Menunu.HELP = false;
-                        } else if (HelpInMenu.HELP_BACK && PauseMenu.HELP) {
+                            HelpStage.HELP_BACK = false;
+                            MainMenuStage.HELP = false;
+                        } else if (HelpStage.HELP_BACK && PauseStage.HELP) {
                             stage.setScene(pauseMenuScene);
-                            HelpInMenu.HELP_BACK = false;
-                           PauseMenu.HELP = false;
+                            HelpStage.HELP_BACK = false;
+                           PauseStage.HELP = false;
                         }
                     }
                 });
                 scoreOptionScene.setOnMouseReleased(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
-                        if (ScoreInMenu.SCORE_BACK) {
+                        if (ScoreStage.SCORE_BACK) {
                             stage.setScene(menunuScene);
-                            ScoreInMenu.SCORE_BACK = false;
-                            Menunu.SCORE = false;
+                            ScoreStage.SCORE_BACK = false;
+                            MainMenuStage.SCORE = false;
                         }
                     }
                 });
@@ -165,16 +165,16 @@ public class Game extends Application {
                 pauseMenuScene.setOnMouseReleased(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
-                        if (PauseMenu.CONTINUE) {
+                        if (PauseStage.CONTINUE) {
                             running[0] = true;
                             stage.setScene(scene);
                             Keyboard.pause = !Keyboard.pause;
-                            PauseMenu.CONTINUE = false;
+                            PauseStage.CONTINUE = false;
                         }
-                        if (PauseMenu.HELP) {
+                        if (PauseStage.HELP) {
                             stage.setScene(helpScene);
                         }
-                        if (PauseMenu.RESTART) {
+                        if (PauseStage.RESTART) {
                             try {
                                 createNewGame();
                             } catch (IOException e) {
@@ -183,9 +183,9 @@ public class Game extends Application {
                             running[0] = true;
                             stage.setScene(scene);
                             Keyboard.pause = !Keyboard.pause;
-                            PauseMenu.RESTART = false;
+                            PauseStage.RESTART = false;
                         }
-                        if (PauseMenu.MAIN_MAIN) {
+                        if (PauseStage.MAIN_MAIN) {
                             try {
                                 createNewGame();
                             } catch (IOException e) {
@@ -194,7 +194,7 @@ public class Game extends Application {
                             running[0] = false;
                             stage.setScene(menunuScene);
                             Keyboard.pause = !Keyboard.pause;
-                            PauseMenu.MAIN_MAIN = false;
+                            PauseStage.MAIN_MAIN = false;
                         }
 
                     }
@@ -207,7 +207,7 @@ public class Game extends Application {
                             running[0] = true;
                             stage.setScene(scene);
                             Keyboard.pause = !Keyboard.pause;
-                            PauseMenu.CONTINUE = false;
+                            PauseStage.CONTINUE = false;
                         }
                     }
                 });

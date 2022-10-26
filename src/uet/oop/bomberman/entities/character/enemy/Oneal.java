@@ -68,7 +68,7 @@ public class Oneal extends Enemy{
             }
         }
     }
-    //Oneal di chuyển với tốc độ không cố định, có thể đuổi theo Bomber
+    //Oneal  có thể đuổi theo Bomber
     public void calculateMove()
     {
         direction = AI.calculateMovingDirection();
