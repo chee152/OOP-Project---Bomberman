@@ -5,5 +5,10 @@ import java.util.Random;
 public abstract class AI {
     protected Random random = new Random();
 
-    public abstract int calDirection();
+    private boolean allowSpeedUp = false;
+
+    public boolean isAllowToSpeedUp() {
+        return allowSpeedUp;
+    }
+    public abstract int calculateMovingDirection();
 }

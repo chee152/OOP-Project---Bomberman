@@ -12,7 +12,7 @@ import uet.oop.bomberman.map.GameMap;
 import java.io.IOException;
 
 public class Bomber extends Character {
-    private static int VELOCITY = 2;
+    private static int VELOCITY = 3;
     private Sprite prevSprite = Sprite.player_right;
     private boolean alive = true;
 

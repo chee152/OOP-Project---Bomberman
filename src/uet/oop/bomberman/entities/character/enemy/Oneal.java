@@ -4,7 +4,7 @@ import javafx.scene.image.Image;
 import javafx.scene.canvas.GraphicsContext;
 import uet.oop.bomberman.Game;
 import uet.oop.bomberman.collision.Collision;
-import uet.oop.bomberman.entities.character.enemy.AI.subAI;
+import uet.oop.bomberman.entities.character.enemy.AI.AINormal;
 import uet.oop.bomberman.graphics.Sprite;
 
 import java.io.IOException;
@@ -15,7 +15,7 @@ public class Oneal extends Enemy{
     {
         super(xUnit, yUnit, img);
         sprite = Sprite.oneal_right1;
-        AI = new subAI(this);
+        AI = new AINormal(this);
     }
     public void update() throws IOException {
         if (Objects.requireNonNull(Game.getBomber()).isAlive())
@@ -71,7 +71,7 @@ public class Oneal extends Enemy{
     //Oneal di chuyển với tốc độ không cố định, có thể đuổi theo Bomber
     public void calculateMove()
     {
-        direction = AI.calDirection();
+        direction = AI.calculateMovingDirection();
         if (!this.isDie)
         {
             if (direction == 0)

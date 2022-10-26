@@ -1,6 +1,7 @@
 package uet.oop.bomberman.entities.character.enemy;
 
 import javafx.scene.canvas.GraphicsContext;
+import uet.oop.bomberman.entities.character.enemy.AI.AILow;
 import uet.oop.bomberman.graphics.Sprite;
 import javafx.scene.image.Image;
 import uet.oop.bomberman.Game;
@@ -15,6 +16,7 @@ public class Doll extends Enemy{
     {
         super(xUnit,yUnit,img);
         sprite = Sprite.balloom_left1;
+        AI = new AILow();
     }
     public void update() throws IOException {
         if (Objects.requireNonNull(Game.getBomber()).isAlive())
@@ -101,7 +103,10 @@ public class Doll extends Enemy{
                     direction = 2;
                 }
             }
-
+            if (count >= 600)
+            {
+                AI.calculateMovingDirection();
+            }
 
 
         }

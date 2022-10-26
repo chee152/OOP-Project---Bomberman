@@ -4,7 +4,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import uet.oop.bomberman.Game;
 import uet.oop.bomberman.collision.Collision;
-import uet.oop.bomberman.entities.character.enemy.AI.subAI;
+import uet.oop.bomberman.entities.character.enemy.AI.AIChangeSpeed;
+import uet.oop.bomberman.entities.character.enemy.AI.AINormal;
 import uet.oop.bomberman.graphics.Sprite;
 
 import java.io.IOException;
@@ -15,7 +16,7 @@ public class Minvo extends Enemy{
     {
         super(xUnit, yUnit, img);
         sprite = Sprite.minvo_right1;
-        AI = new subAI(this);
+        AI = new AIChangeSpeed(this);
     }
     public void update() throws IOException {
         if (Objects.requireNonNull(Game.getBomber()).isAlive())
@@ -67,33 +68,52 @@ public class Minvo extends Enemy{
                     break;
             }
         }
+
     }
     //Oneal di chuyển với tốc độ không cố định, có thể đuổi theo Bomber
+
     public void calculateMove()
     {
-        direction = AI.calDirection();
+        direction = AI.calculateMovingDirection();
+        boolean allowToSpeedUp = AI.isAllowToSpeedUp();
         if (!this.isDie)
         {
             if (direction == 0)
             {
                 if (canGoUp(x, y)) {
-                    y -= speedMinvo;
+                    if (allowToSpeedUp)
+                    {
+                        y -= speedMinvoFast;
+                    }
+                    else y -= speedMinvo;
                 }
             }
 
             else if (direction == 1) {
                 if (canGoRight(x, y)) {
-                    x += speedMinvo;
+                    if (allowToSpeedUp)
+                    {
+                        x += speedMinvoFast;
+                    }
+                    else x += speedMinvo;
                 }
             }
             else if (direction == 2) {
                 if (canGoDown(x, y)) {
-                    y += speedMinvo;
+                    if (allowToSpeedUp)
+                    {
+                        y+= speedMinvoFast;
+                    }
+                    else y += speedMinvo;
                 }
             }
             else if (direction == 3) {
                 if (canGoLeft(x, y)) {
-                    x -= speedMinvo;
+                    if (allowToSpeedUp)
+                    {
+                        x-= speedMinvoFast;
+                    }
+                    else x -= speedMinvo;
                 }
             }
         }

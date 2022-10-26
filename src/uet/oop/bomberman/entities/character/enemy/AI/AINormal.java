@@ -4,18 +4,18 @@ import uet.oop.bomberman.Game;
 import uet.oop.bomberman.entities.character.bomber.Bomber;
 import uet.oop.bomberman.entities.character.enemy.Enemy;
 
-public class subAI extends AI{
+public class AINormal extends AI{
     Bomber bomber = Game.getBomber();
     Enemy enemy;
 
     //Enemy tự di chuyển
-    public subAI(Enemy enemy)
+    public AINormal(Enemy enemy)
     {
         this.enemy = enemy;
     }
 
 
-    public int calDirection() {
+    public int calculateMovingDirection() {
         return findPath();
     }
     //Thuật toán tìm đường cho Enemy
