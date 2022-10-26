@@ -100,7 +100,7 @@ public class GameMap {
         }*/
         for (int i = 0; i < heightMap; i++) {
             String line = reader.nextLine();
-            for (int j = 0; j < widthMap-1; j++) {
+            for (int j = 0; j < widthMap; j++) {
                 map[i][j] = line.charAt(j);
             }
         }
@@ -112,9 +112,9 @@ public class GameMap {
     public static void createMap(int gameLevel) throws IOException
     {
         fileLoad(gameLevel);
-        for(int i = 0;i<heightMap;i++)
+        for(int i = 0; i<heightMap;i++)
         {
-            for(int j=0;j<widthMap;j++)
+            for(int j = 0; j<widthMap;j++)
             {
                 char c = map[i][j];
                 Entity obj;
