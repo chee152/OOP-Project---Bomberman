@@ -86,19 +86,9 @@ public class GameMap {
         heightMap = reader.nextInt();
         widthMap = reader.nextInt();
 
-      //  Game.WIDTH_BUFFER = widthMap - Game.WIDTH - 2;
-
         map = new char[heightMap][widthMap];
         reader.nextLine();
 
-        /*for (int i = 0; i<heightMap;i++)
-        {
-            String line = reader.nextLine();
-            for (int j = 0;j < 30; j++)
-            {
-                map[i][j] = line.charAt(j);
-            }
-        }*/
         for (int i = 0; i < heightMap; i++) {
             String line = reader.nextLine();
             for (int j = 0; j < widthMap; j++) {

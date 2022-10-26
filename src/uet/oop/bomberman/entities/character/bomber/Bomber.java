@@ -1,8 +1,6 @@
 package uet.oop.bomberman.entities.character.bomber;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import uet.oop.bomberman.ControlKeyboard.Keyboard;
 import uet.oop.bomberman.Game;
 import uet.oop.bomberman.entities.character.Character;
@@ -12,7 +10,7 @@ import uet.oop.bomberman.map.GameMap;
 import java.io.IOException;
 
 public class Bomber extends Character {
-    private static int VELOCITY = 3;
+    private static int bomberSpeed = 2;
     private Sprite prevSprite = Sprite.player_right;
     private boolean alive = true;
 
@@ -21,12 +19,12 @@ public class Bomber extends Character {
         sprite = Sprite.player_right;
     }
 
-    public static int getVELOCITY() {
-        return VELOCITY;
+    public static int getBomberSpeed() {
+        return bomberSpeed;
     }
 
-    public static void setVELOCITY(int VELOCITY) {
-        Bomber.VELOCITY = VELOCITY;
+    public static void setBomberSpeed(int bomberSpeed) {
+        Bomber.bomberSpeed = bomberSpeed;
     }
 
     public boolean isAlive() {
@@ -130,8 +128,8 @@ public class Bomber extends Character {
 
             //di chuyển
 
-            x += dx * VELOCITY;
-            y += dy * VELOCITY;
+            x += dx * bomberSpeed;
+            y += dy * bomberSpeed;
         }
     }
 }

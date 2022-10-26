@@ -67,10 +67,17 @@ public abstract class Entity {
     }
 
 
-
+    /**
+     * Phương thức này được gọi liên tục trong vòng lặp game,
+     * mục đích để cập nhật hình ảnh của entity theo trạng thái.
+     */
     public void render(GraphicsContext gc) {
         gc.drawImage(img, x, y);
     }
+    /**
+     * Phương thức này được gọi liên tục trong vòng lặp game,
+     * mục đích để xử lý sự kiện và cập nhật trạng thái Entity.
+     */
     public abstract void update() throws IOException;
 
 }

@@ -66,7 +66,6 @@ public class Game extends Application {
 
     private Bomber bomberman;
 
-   // private Camera camera;
     public static boolean isEnemyDead = false;
     public static boolean isPlayerDead = false;
     public static boolean isExplosion = false;
@@ -79,7 +78,6 @@ public class Game extends Application {
     private final MainMenuStage mainMenuStage = new MainMenuStage();
     private final PauseStage pauseStage = new PauseStage();
     private final HelpStage helpStage = new HelpStage();
-    //private final AboutOption aboutOption = new AboutOption();
     private final ScoreStage scoreStage = new ScoreStage(score);
     private Sound sound = new Sound();
     public Game() throws IOException {
@@ -432,7 +430,7 @@ public class Game extends Application {
                 if (LayeredEntity.get(value).peek() instanceof SpeedItem
                         && Collision.CollisionHasItem(Objects.requireNonNull(getBomber()), LayeredEntity.get(value).peek())) {
                     LayeredEntity.get(value).pop();
-                    Bomber.setVELOCITY(3);
+                    Bomber.setBomberSpeed(3);
                     SpeedItem.timeItem = 0;
                     SpeedItem.pickUp = true;
                 }
@@ -453,7 +451,7 @@ public class Game extends Application {
                 SpeedItem.timeItem++;
                 if (SpeedItem.timeItem > 2000) {
                     SpeedItem.timeItem = 0;
-                    Bomber.setVELOCITY(2);
+                    Bomber.setBomberSpeed(2);
                     SpeedItem.pickUp = false;
                 }
             }
