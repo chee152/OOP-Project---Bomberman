@@ -45,14 +45,26 @@ public class Score {
         return score;
     }
 
-    public List<Integer> getHighScore() {
-        return highScore;
-    }
+    public List<Integer> getHighScore() { return highScore;}
 
-    public void killEnemy() {
+    public void killBallom() {
         score += 100;
     }
-
+    public void killOneal() {
+        score += 200;
+    }
+    public void killDoll() {
+        score += 150;
+    }
+    public void killMinvo() {
+        score += 300;
+    }
+    //public void killGhost() {
+      //  score += 400;
+    //}
+   // public void killEnemy() {
+   //     score += 100;
+    //}
     public void endGame() throws IOException {
         highScore.add(getScore());
         Collections.sort(highScore);
