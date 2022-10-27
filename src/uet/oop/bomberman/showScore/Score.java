@@ -59,9 +59,10 @@ public class Score {
     public void killMinvo() {
         score += 300;
     }
-    //public void killGhost() {
-      //  score += 400;
-    //}
+
+    public void killGhost() {
+        score += 400;
+    }
    // public void killEnemy() {
    //     score += 100;
     //}

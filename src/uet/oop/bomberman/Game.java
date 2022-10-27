@@ -307,6 +307,10 @@ public class Game extends Application {
                     {
                         score.killDoll();
                     }
+                    if (movingEntity instanceof Ghost)
+                    {
+                        score.killGhost();
+                    }
                     showinf.updateScore(score);
                 }
             }
