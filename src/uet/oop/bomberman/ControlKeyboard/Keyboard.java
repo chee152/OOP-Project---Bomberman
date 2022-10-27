@@ -10,13 +10,13 @@ public class Keyboard {
     {
         if (event.getEventType() == KeyEvent.KEY_PRESSED)
         {
-            if (event.getCode() == KeyCode.UP || event.getCode() == KeyCode.W) {
+            if (event.getCode() == KeyCode.UP ) {
                 up = true;
-            } else if (event.getCode() == KeyCode.LEFT|| event.getCode() == KeyCode.A) {
+            } else if (event.getCode() == KeyCode.LEFT) {
                 left = true;
-            } else if (event.getCode() == KeyCode.DOWN|| event.getCode() == KeyCode.S) {
+            } else if (event.getCode() == KeyCode.DOWN) {
                 down = true;
-            } else if (event.getCode() == KeyCode.RIGHT|| event.getCode() == KeyCode.D) {
+            } else if (event.getCode() == KeyCode.RIGHT) {
                 right = true;
             }
         } else {

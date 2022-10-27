@@ -2,6 +2,7 @@ package uet.oop.bomberman.menu;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
@@ -24,11 +25,16 @@ public class HelpStage extends Menu {
     public Scene create() {
 
         VBox vb = initVBoxPause();
+       // vb.setAlignment(Pos.TOP_LEFT);
 
         Text backText = new Text("Back");
 
-        String str = " Use arrows on keyboard to move bomberman\n"
-                +" Esc : pause";
+        String str = "\n\n\n"+
+                "1. You can move bomberman by using 4 arrow buttons on keyboard.\n\n"
+
+                + "2. Use Space button to place bomb at bomberman's current location.\n\n"
+
+                +"3. Use Esc to Pause game. ";
 
 
 
@@ -38,7 +44,7 @@ public class HelpStage extends Menu {
 
         customTextPause(backText);
         customTextPause(info);
-        info.setStyle("-fx-font-size:25");
+        info.setStyle("-fx-font-size:18");
         info.setEffect(null);
 
         area.getChildren().add(info);
@@ -70,7 +76,6 @@ public class HelpStage extends Menu {
         } else if (event.getEventType() == MouseEvent.MOUSE_EXITED_TARGET) {
             text.setStyle("-fx-font-size:45");
         } else if (event.getEventType() == MouseEvent.MOUSE_PRESSED) {
-//			System.out.println("chon");
             HELP_BACK = true;
             text.setStyle("-fx-font-size:45");
         } else {
