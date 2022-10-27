@@ -331,7 +331,7 @@ public class Game extends Application {
      *
      */
 
-    int cnt_time_bombsound = 0;
+    int cnt_time_bomb_remain = 0;
     int cnt_time_enemydead = 0;
     int cnt_time_playerdead = 0;
 
@@ -345,8 +345,8 @@ public class Game extends Application {
             {
                 bomb.update();
                 if (!bomb.isDestroyed() && bomb.isExploding())
-                { 	cnt_time_bombsound++;
-                    isExplosion = cnt_time_bombsound == 1;
+                { 	cnt_time_bomb_remain++;
+                    isExplosion = cnt_time_bomb_remain == 1;
                     for (int i = 0; i<bomb.getFlameList().size();i++)
                     {
                         Flame flame = bomb.getFlameList().get(i);
@@ -403,7 +403,7 @@ public class Game extends Application {
                 {
                     NUMBER_OF_BOMBS ++ ;
                     bombItr.remove();
-                    cnt_time_bombsound = 0;
+                    cnt_time_bomb_remain = 0;
                     cnt_time_enemydead = 0;
                     cnt_time_playerdead = 0;
                 }
@@ -412,9 +412,9 @@ public class Game extends Application {
     }
 
     //Item update khi va chạm với bomber
-    int cnt_time_itemsound1 = 0;
-    int cnt_time_itemsound2 = 0;
-    int cnt_time_itemsound3 = 0;
+    int cnt_time_item1 = 0; //thời gian hiệu lực của item
+    int cnt_time_item2 = 0;
+    int cnt_time_item3 = 0;
     public void itemUpdate()
     {
         if (!LayeredEntity.isEmpty())
@@ -449,9 +449,9 @@ public class Game extends Application {
                 }
             }
             if (FlameItem.pickUp) {
-                cnt_time_itemsound1++;
+                cnt_time_item1++;
                 FlameItem.timeItem++;
-                isGetItem = cnt_time_itemsound1 == 1;
+                isGetItem = cnt_time_item1 == 1;
                 if (FlameItem.timeItem > 2000) {
                     FlameItem.timeItem = 0;
                     Game.LENGTH_OF_FLAME = 1;
@@ -459,8 +459,8 @@ public class Game extends Application {
                 }
             }
             if (SpeedItem.pickUp) {
-                cnt_time_itemsound2++;
-                isGetItem = cnt_time_itemsound2 == 1;
+                cnt_time_item2++;
+                isGetItem = cnt_time_item2 == 1;
                 SpeedItem.timeItem++;
                 if (SpeedItem.timeItem > 2000) {
                     SpeedItem.timeItem = 0;
@@ -469,8 +469,8 @@ public class Game extends Application {
                 }
             }
             if (BombItem.pickUp) {
-                cnt_time_itemsound3++;
-                isGetItem = cnt_time_itemsound3 == 1;
+                cnt_time_item3++;
+                isGetItem = cnt_time_item3 == 1;
                 BombItem.timeItem++;
                 if (BombItem.timeItem > 2000) {
                     BombItem.timeItem = 0;

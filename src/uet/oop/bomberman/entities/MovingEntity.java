@@ -24,7 +24,7 @@ public abstract class MovingEntity extends Entity{
     public boolean bombCollision(Bomb bomb, MovingEntity movingEntity)
     {
         if (bomb == null|| movingEntity == null) return false;
-        
+
         //tính khoảng cách từ bom đến những AnimatedEntity
         int dx =  Math.abs(bomb.getX() - movingEntity.getX());
         int dy =  Math.abs(bomb.getY() - movingEntity.getY());
