@@ -3,10 +3,7 @@ package uet.oop.bomberman.map;
 import uet.oop.bomberman.Game;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.character.bomber.Bomber;
-import uet.oop.bomberman.entities.character.enemy.Balloom;
-import uet.oop.bomberman.entities.character.enemy.Doll;
-import uet.oop.bomberman.entities.character.enemy.Minvo;
-import uet.oop.bomberman.entities.character.enemy.Oneal;
+import uet.oop.bomberman.entities.character.enemy.*;
 import uet.oop.bomberman.entities.tile.DestroyBrick;
 import uet.oop.bomberman.entities.tile.item.BombItem;
 import uet.oop.bomberman.entities.tile.item.FlameItem;
@@ -174,6 +171,11 @@ public class GameMap {
                         Minvo minvo = new Minvo(j, i, Sprite.minvo_right1.getFxImage());
                         obj = new Grass(j, i, Sprite.grass.getFxImage());
                         Game.entityList.add(minvo);
+                        Game.stillObjects.add(obj);
+                    case '5':
+                        Ghost ghost = new Ghost(j, i, Sprite.ghost.getFxImage());
+                        obj = new Grass(j, i, Sprite.grass.getFxImage());
+                        Game.entityList.add(ghost);
                         Game.stillObjects.add(obj);
                     default:
                         obj = new Grass(j, i, Sprite.grass.getFxImage());

@@ -2,9 +2,6 @@ package uet.oop.bomberman.graphics;
 
 import javafx.scene.image.*;
 
-import java.awt.image.BufferedImage;
-import java.nio.IntBuffer;
-
 /**
  * Lưu trữ thông tin các pixel của 1 sprite (hình ảnh game)
  */
@@ -121,7 +118,9 @@ public class Sprite {
 	public static Sprite mob_dead1 = new Sprite(DEFAULT_SIZE, 15, 0, SpriteSheet.tiles, 16, 16);
 	public static Sprite mob_dead2 = new Sprite(DEFAULT_SIZE, 15, 1, SpriteSheet.tiles, 16, 16);
 	public static Sprite mob_dead3 = new Sprite(DEFAULT_SIZE, 15, 2, SpriteSheet.tiles, 16, 16);
-	
+	//Ghost
+	public static Sprite ghost = new Sprite(DEFAULT_SIZE, 6, 5, SpriteSheet.tiles, 16, 16);
+
 	/*
 	|--------------------------------------------------------------------------
 	| Bomb Sprites
