@@ -172,11 +172,13 @@ public class GameMap {
                         obj = new Grass(j, i, Sprite.grass.getFxImage());
                         Game.entityList.add(minvo);
                         Game.stillObjects.add(obj);
+                        break;
                     case '5':
                         Ghost ghost = new Ghost(j, i, Sprite.ghost.getFxImage());
                         obj = new Grass(j, i, Sprite.grass.getFxImage());
                         Game.entityList.add(ghost);
                         Game.stillObjects.add(obj);
+                        break;
                     default:
                         obj = new Grass(j, i, Sprite.grass.getFxImage());
                         Game.stillObjects.add(obj);

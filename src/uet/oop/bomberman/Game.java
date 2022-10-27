@@ -44,7 +44,7 @@ public class Game extends Application {
 
     public static final int WIDTH = 20;
     public static final int HEIGHT = 13;
-   // public static int WIDTH_BUFFER = 0;
+
     private GraphicsContext gc;
     private Canvas canvas;
 

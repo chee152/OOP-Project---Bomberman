@@ -56,14 +56,14 @@ public class Minvo extends Enemy{
                     if (moving)
                         sprite = Sprite.movingSprite(Sprite.minvo_right1, Sprite.minvo_right2, Sprite.minvo_right3, animate, time);
                     else
-                        sprite = Sprite.oneal_right1;
+                        sprite = Sprite.minvo_right1;
                     break;
                 case 2:
                 case 3:
                     if (moving)
                         sprite = Sprite.movingSprite(Sprite.minvo_left1, Sprite.minvo_left2, Sprite.minvo_left3, animate, time);
                     else
-                        sprite = Sprite.oneal_right1;
+                        sprite = Sprite.minvo_right1;
                     break;
             }
         }
