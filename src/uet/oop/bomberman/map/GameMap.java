@@ -178,6 +178,7 @@ public class GameMap {
                         obj = new Grass(j, i, Sprite.grass.getFxImage());
                         Game.entityList.add(ghost);
                         Game.stillObjects.add(obj);
+                        break;
                     default:
                         obj = new Grass(j, i, Sprite.grass.getFxImage());
                         Game.stillObjects.add(obj);
