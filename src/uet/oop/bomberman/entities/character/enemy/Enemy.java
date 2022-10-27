@@ -13,10 +13,10 @@ public abstract class Enemy extends Character {
         super(xUnit, yUnit, img);
     }
 
-    public int speed = Game.SPEED_OF_ENEMY;
+    public int speedBalloom = Game.SPEED_OF_BALLOOM;
     public int speedDoll=Game.SPEED_OF_DOLL;
-    public int speedMinvo = Game.SPEED_OF_MINVO_SLOW;
-    public int speedMinvoFast = Game.SPEED_OF_MINVO_FAST;
+    public int speedMinvo = Game.SPEED_OF_MINVO;
+    public int speedOneal = Game.SPEED_OF_ONEAL;
     protected int direction = -1;
     public boolean isDie = false;
     protected AI AI;

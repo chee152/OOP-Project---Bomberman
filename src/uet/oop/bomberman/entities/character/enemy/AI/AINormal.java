@@ -18,17 +18,21 @@ public class AINormal extends AI{
     public int calculateMovingDirection() {
         return findPath();
     }
+
     //Thuật toán tìm đường cho Enemy
     public int findPath()
     {
         int direction_;
-        if ((double) Math.abs(enemy.getX() - bomber.getX()) < (double) Math.abs(enemy.getY() - bomber.getY())) {
+        double dx = (double) Math.abs(enemy.getX() - bomber.getX());
+        double dy = (double) Math.abs(enemy.getY() - bomber.getY());
+
+        if (dx < dy) {
             direction_ = horizontalDirection();
             if (direction_ != -1) {
                 return direction_;
             }
             return verticalDirection();
-        } else if ((double) Math.abs(enemy.getX() - bomber.getX()) > (double) Math.abs(enemy.getY() - bomber.getY())) {
+        } else if (dx > dy) {
             direction_ = verticalDirection();
             if (direction_ != -1) {
                 return direction_;

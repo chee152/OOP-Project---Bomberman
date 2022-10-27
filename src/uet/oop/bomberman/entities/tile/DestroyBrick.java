@@ -23,10 +23,6 @@ public class DestroyBrick extends Tile {
         this.exploding = exploded;
     }
 
-   // public Brick(int x, int y, Image img) {
-      //  super(x, y, img);
-   // }
-
     @Override
     public void update() {
         handleBrick();
@@ -38,7 +34,7 @@ public class DestroyBrick extends Tile {
 
 
     private void animate() {
-        if (animate < 1) animate++;
+        if (animate < 7500) animate++;
         else animate = 0;
     }
 

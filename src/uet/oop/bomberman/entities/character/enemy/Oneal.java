@@ -77,23 +77,23 @@ public class Oneal extends Enemy{
             if (direction == 0)
             {
                 if (canGoUp(x, y)) {
-                    y -= speed;
+                    y -= speedOneal;
                 }
             }
 
             else if (direction == 1) {
                 if (canGoRight(x, y)) {
-                    x += speed;
+                    x += speedOneal;
                 }
             }
             else if (direction == 2) {
                 if (canGoDown(x, y)) {
-                    y += speed;
+                    y += speedOneal;
                 }
             }
             else if (direction == 3) {
                 if (canGoLeft(x, y)) {
-                    x -= speed;
+                    x -= speedOneal;
                 }
             }
         }

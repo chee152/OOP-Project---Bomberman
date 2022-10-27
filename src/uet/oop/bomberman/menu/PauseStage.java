@@ -93,7 +93,6 @@ public class PauseStage extends Menu {
         } else if (event.getEventType() == MouseEvent.MOUSE_EXITED_TARGET) {
             text.setStyle("-fx-font-size:45");
         } else if (event.getEventType() == MouseEvent.MOUSE_PRESSED) {
-//			System.out.println("chon");
             MAIN_MAIN = true;
             text.setStyle("-fx-font-size:45");
         } else {
@@ -109,7 +108,6 @@ public class PauseStage extends Menu {
             text.setStyle("-fx-font-size:45");
         } else if (event.getEventType() == MouseEvent.MOUSE_PRESSED) {
             RESTART = true;
-//			System.out.println("chon");
             text.setStyle("-fx-font-size:45");
         } else {
             text.setStyle("-fx-font-size:45");
@@ -122,7 +120,6 @@ public class PauseStage extends Menu {
         } else if (event.getEventType() == MouseEvent.MOUSE_EXITED_TARGET) {
             text.setStyle("-fx-font-size:45");
         } else if (event.getEventType() == MouseEvent.MOUSE_PRESSED) {
-//			System.out.println("chon");
             HELP = true;
             text.setStyle("-fx-font-size:45");
         } else {
@@ -136,7 +133,6 @@ public class PauseStage extends Menu {
         } else if (event.getEventType() == MouseEvent.MOUSE_EXITED_TARGET) {
             text.setStyle("-fx-font-size:45");
         } else if (event.getEventType() == MouseEvent.MOUSE_PRESSED) {
-//			System.out.println("chon");
             CONTINUE = true;
             text.setStyle("-fx-font-size:45");
         } else {

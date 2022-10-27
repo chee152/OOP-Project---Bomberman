@@ -47,7 +47,7 @@ public class Score {
 
     public List<Integer> getHighScore() { return highScore;}
 
-    public void killBallom() {
+    public void killBalloom() {
         score += 100;
     }
     public void killOneal() {

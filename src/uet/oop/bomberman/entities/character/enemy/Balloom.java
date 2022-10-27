@@ -75,7 +75,7 @@ public class Balloom extends Enemy{
             {
                 if (canGoRight(x,y))
                 {
-                    x+=speed;
+                    x+=speedBalloom;
                     direction = 1;
                 }
             }
@@ -83,7 +83,7 @@ public class Balloom extends Enemy{
             {
                 if (canGoLeft(x,y))
                 {
-                    x -= speed;
+                    x -= speedBalloom;
                     direction = 3;
                 }
             }
@@ -91,7 +91,7 @@ public class Balloom extends Enemy{
             {
                 if (canGoUp(x,y))
                 {
-                    y -= speed;
+                    y -= speedBalloom;
                     direction = 0;
                 }
             }
@@ -99,7 +99,7 @@ public class Balloom extends Enemy{
             {
                 if (canGoDown(x,y))
                 {
-                    y += speed;
+                    y += speedBalloom;
                     direction = 2;
                 }
             }

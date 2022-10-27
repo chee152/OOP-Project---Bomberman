@@ -1,6 +1,7 @@
 package uet.oop.bomberman.entities;
 
 import javafx.scene.image.Image;
+import uet.oop.bomberman.collision.Collision;
 import uet.oop.bomberman.entities.bomb.Bomb;
 import uet.oop.bomberman.graphics.Sprite;
 
@@ -19,19 +20,23 @@ public abstract class MovingEntity extends Entity{
     protected int x1_temp, x2_temp, y1_temp, y2_temp;
     protected final int pixel = 7;
 
-    //check va chạm với bomb
+    //xử lí khi Bomber đi ra sau khi vừa đặt bom (allowedToPassThru)
     public boolean bombCollision(Bomb bomb, MovingEntity movingEntity)
     {
         if (bomb == null|| movingEntity == null) return false;
+        
         //tính khoảng cách từ bom đến những AnimatedEntity
         int dx =  Math.abs(bomb.getX() - movingEntity.getX());
         int dy =  Math.abs(bomb.getY() - movingEntity.getY());
 
-        //check trạng thái của Bomber, nếu Bomber nằm trong vùng bomb nổ
-        //thì Bomber chết và ngược lại
+        //bomber đang ở vị trí đặt bomb
         if (!(0<=dx && dx <= Sprite.SCALED_SIZE && dy>=0 && dy<=Sprite.SCALED_SIZE))
         {
-            bomb._allowedToPassThru = false;
+            bomb._allowedToPassThru = false; //chặn bomber đi vào bomb
+        }
+        if (!bomb._allowedToPassThru)
+        {
+            return Collision.CheckCollision(bomb,movingEntity);
         }
         return false;
     }

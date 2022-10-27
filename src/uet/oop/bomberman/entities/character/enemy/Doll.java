@@ -15,7 +15,7 @@ public class Doll extends Enemy{
     public Doll(int xUnit, int yUnit, Image img)
     {
         super(xUnit,yUnit,img);
-        sprite = Sprite.balloom_left1;
+        sprite = Sprite.doll_right1;
         AI = new AILow();
     }
     public void update() throws IOException {
@@ -103,9 +103,10 @@ public class Doll extends Enemy{
                     direction = 2;
                 }
             }
+
             if (count >= 600)
             {
-                AI.calculateMovingDirection();
+                count = AI.calculateMovingDirection();
             }
 
 

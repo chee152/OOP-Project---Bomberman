@@ -79,55 +79,41 @@ public class MainMenuStage extends Menu {
 
     private void scoreHandle(MouseEvent event, Text text) {
         if (event.getEventType() == MouseEvent.MOUSE_ENTERED) {
-            text.setStyle("-fx-font-size:60");
+            text.setStyle("-fx-font-size:43");
         } else if (event.getEventType() == MouseEvent.MOUSE_EXITED) {
-            text.setStyle("-fx-font-size:45");
+            text.setStyle("-fx-font-size:40");
         } else if (event.getEventType() == MouseEvent.MOUSE_PRESSED) {
-//			System.out.println("chon");
             SCORE = true;
-            text.setStyle("-fx-font-size:45");
+            text.setStyle("-fx-font-size:40");
         } else {
-            text.setStyle("-fx-font-size:45");
+            text.setStyle("-fx-font-size:40");
         }
     }
 
-
-    private static void aboutHandle(MouseEvent event, Text text) {
-        if (event.getEventType() == MouseEvent.MOUSE_ENTERED) {
-            text.setStyle("-fx-font-size:60");
-        } else if (event.getEventType() == MouseEvent.MOUSE_EXITED) {
-            text.setStyle("-fx-font-size:45");
-
-        } else {
-            text.setStyle("-fx-font-size:45");
-        }
-    }
 
     private static void helpHandle(MouseEvent event, Text text) {
         if (event.getEventType() == MouseEvent.MOUSE_ENTERED) {
-            text.setStyle("-fx-font-size:60");
+            text.setStyle("-fx-font-size:50");
         } else if (event.getEventType() == MouseEvent.MOUSE_EXITED_TARGET) {
-            text.setStyle("-fx-font-size:45");
+            text.setStyle("-fx-font-size:40");
         } else if (event.getEventType() == MouseEvent.MOUSE_PRESSED) {
-//			System.out.println("chon");
             HELP = true;
-            text.setStyle("-fx-font-size:45");
+            text.setStyle("-fx-font-size:40");
         } else {
-            text.setStyle("-fx-font-size:45");
+            text.setStyle("-fx-font-size:40");
         }
     }
 
     private static void playHandle(MouseEvent event, Text text) {
         if (event.getEventType() == MouseEvent.MOUSE_ENTERED) {
-            text.setStyle("-fx-font-size:60");
+            text.setStyle("-fx-font-size:50");
         } else if (event.getEventType() == MouseEvent.MOUSE_EXITED_TARGET) {
-            text.setStyle("-fx-font-size:45");
+            text.setStyle("-fx-font-size:40");
         } else if (event.getEventType() == MouseEvent.MOUSE_PRESSED) {
-//			System.out.println("chon");
             PLAY = true;
-            text.setStyle("-fx-font-size:45");
+            text.setStyle("-fx-font-size:40");
         } else {
-            text.setStyle("-fx-font-size:45");
+            text.setStyle("-fx-font-size:40");
         }
     }
 

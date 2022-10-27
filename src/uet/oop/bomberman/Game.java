@@ -18,7 +18,7 @@ import uet.oop.bomberman.entities.MovingEntity;
 import uet.oop.bomberman.entities.bomb.Bomb;
 import uet.oop.bomberman.entities.bomb.Flame;
 import uet.oop.bomberman.entities.character.bomber.Bomber;
-import uet.oop.bomberman.entities.character.enemy.Enemy;
+import uet.oop.bomberman.entities.character.enemy.*;
 import uet.oop.bomberman.entities.tile.DestroyBrick;
 import uet.oop.bomberman.entities.tile.item.BombItem;
 import uet.oop.bomberman.entities.tile.item.FlameItem;
@@ -50,14 +50,14 @@ public class Game extends Application {
 
     public static int LENGTH_OF_FLAME = 1;
     public static int NUMBER_OF_BOMBS = 1;
-    public static final int SPEED_OF_DOLL=3;
-    public static final int SPEED_OF_MINVO_SLOW = 1;
-    public static final int SPEED_OF_MINVO_FAST = 2;
+    public static final int SPEED_OF_DOLL=2;
+    public static final int SPEED_OF_MINVO = 2;
+    public static final int SPEED_OF_ONEAL = 1;
 
-    public static final int SPEED_OF_ENEMY = 1;
+    public static final int SPEED_OF_BALLOOM = 1;
 
     public static final int TIME_TO_DISAPPEAR = 100;
-    public static final int TIME_TO_EXPLOSION_BOMB = 300;
+    public static final int TIME_TO_EXPLOSION_BOMB = 200;
 
     public static List<MovingEntity> entityList = new ArrayList<>();
     public static List<Entity> stillObjects = new ArrayList<>();
@@ -290,7 +290,23 @@ public class Game extends Application {
                 movingEntity.update();
                 if (((Enemy) movingEntity).isDestroyed()) {
                     iterator.remove();
-                    score.killEnemy();
+                    //score.killEnemy();
+                    if (movingEntity instanceof Balloom)
+                    {
+                        score.killBalloom();
+                    }
+                    if (movingEntity instanceof Oneal)
+                    {
+                        score.killOneal();
+                    }
+                    if (movingEntity instanceof Minvo)
+                    {
+                        score.killMinvo();
+                    }
+                    if (movingEntity instanceof Doll)
+                    {
+                        score.killDoll();
+                    }
                     showinf.updateScore(score);
                 }
             }
@@ -519,8 +535,6 @@ public class Game extends Application {
     public void render()
     {
         gc.clearRect(0,0,canvas.getWidth(),canvas.getHeight());
-        //gc.translate(-camera.getX(), 0);
-
 
         for (Entity stillObject : stillObjects)
         {
@@ -543,10 +557,11 @@ public class Game extends Application {
             {
                 movingEntity.render(gc);
             }
-        } //gc.translate(camera.getX(), 0);
+        }
 
     }
 
+    //Render bomb and flames while bomb is exploding
     private void bombRender() {
         for (Bomb bomb : bombList) {
             if (bomb != null) {

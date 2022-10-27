@@ -1,10 +1,9 @@
 package uet.oop.bomberman.entities.character.enemy;
 
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.canvas.GraphicsContext;
 import uet.oop.bomberman.Game;
 import uet.oop.bomberman.collision.Collision;
-import uet.oop.bomberman.entities.character.enemy.AI.AIChangeSpeed;
 import uet.oop.bomberman.entities.character.enemy.AI.AINormal;
 import uet.oop.bomberman.graphics.Sprite;
 
@@ -16,7 +15,7 @@ public class Minvo extends Enemy{
     {
         super(xUnit, yUnit, img);
         sprite = Sprite.minvo_right1;
-        AI = new AIChangeSpeed(this);
+        AI = new AINormal(this);
     }
     public void update() throws IOException {
         if (Objects.requireNonNull(Game.getBomber()).isAlive())
@@ -57,63 +56,44 @@ public class Minvo extends Enemy{
                     if (moving)
                         sprite = Sprite.movingSprite(Sprite.minvo_right1, Sprite.minvo_right2, Sprite.minvo_right3, animate, time);
                     else
-                        sprite = Sprite.minvo_right1;
+                        sprite = Sprite.oneal_right1;
                     break;
                 case 2:
                 case 3:
                     if (moving)
                         sprite = Sprite.movingSprite(Sprite.minvo_left1, Sprite.minvo_left2, Sprite.minvo_left3, animate, time);
                     else
-                        sprite = Sprite.minvo_right1;
+                        sprite = Sprite.oneal_right1;
                     break;
             }
         }
-
     }
-    //Oneal di chuyển với tốc độ không cố định, có thể đuổi theo Bomber
 
     public void calculateMove()
     {
         direction = AI.calculateMovingDirection();
-        boolean allowToSpeedUp = AI.isAllowToSpeedUp();
         if (!this.isDie)
         {
             if (direction == 0)
             {
                 if (canGoUp(x, y)) {
-                    if (allowToSpeedUp)
-                    {
-                        y -= speedMinvoFast;
-                    }
-                    else y -= speedMinvo;
+                    y -= speedMinvo;
                 }
             }
 
             else if (direction == 1) {
                 if (canGoRight(x, y)) {
-                    if (allowToSpeedUp)
-                    {
-                        x += speedMinvoFast;
-                    }
-                    else x += speedMinvo;
+                    x += speedMinvo;
                 }
             }
             else if (direction == 2) {
                 if (canGoDown(x, y)) {
-                    if (allowToSpeedUp)
-                    {
-                        y+= speedMinvoFast;
-                    }
-                    else y += speedMinvo;
+                    y += speedMinvo;
                 }
             }
             else if (direction == 3) {
                 if (canGoLeft(x, y)) {
-                    if (allowToSpeedUp)
-                    {
-                        x-= speedMinvoFast;
-                    }
-                    else x -= speedMinvo;
+                    x -= speedMinvo;
                 }
             }
         }
@@ -124,5 +104,3 @@ public class Minvo extends Enemy{
         gc.drawImage(img, x, y);
     }
 }
-
-

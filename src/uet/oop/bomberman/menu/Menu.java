@@ -37,15 +37,15 @@ public abstract class Menu {
         ds.setOffsetY(3.0f);
         ds.setColor(Color.color(0.4f, 0.4f, 0.4f));
 
-        Font font = Font.loadFont("file:res/emulogic.ttf", 40);
+        Font font = Font.loadFont("file:res/emulogic.ttf", 35);
 
         text.setEffect(ds);
         text.setFont(font);
 
         text.setFill(new LinearGradient(0, 0, 1, 1, true,
                 CycleMethod.REFLECT,
-                new Stop(0.0, Color.RED),
-                new Stop(1.0, Color.GOLD)));
+                new Stop(0.0, Color.WHITE),
+                new Stop(1.0, Color.YELLOW)));
         text.setStroke(Color.BLUEVIOLET);
         text.setStrokeWidth(0.5);
 
