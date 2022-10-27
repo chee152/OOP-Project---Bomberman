@@ -114,69 +114,6 @@ public class Bomb extends MovingEntity {
                 GameMap.getMap()[x2_temp][y2_temp] != '#';
     }
 
-    //Brick
-    protected boolean leftableBrick(int x_pos, int y_pos) {
-        x1_temp = (y_pos + pixel) / Sprite.SCALED_SIZE;
-        y1_temp = (x_pos - pixel) / Sprite.SCALED_SIZE;
-
-        x2_temp = (y_pos + Sprite.SCALED_SIZE - pixel) / Sprite.SCALED_SIZE;
-        y2_temp = (x_pos - pixel) / Sprite.SCALED_SIZE;
-
-        if (Game.LayeredEntity.containsKey(Game.generateKey(y1_temp, x1_temp)) ||
-                Game.LayeredEntity.containsKey(Game.generateKey(y2_temp, x2_temp))) {
-            return !(Game.LayeredEntity.get(Game.generateKey(y1_temp, x1_temp)).peek() instanceof DestroyBrick) &&
-                    !(Game.LayeredEntity.get(Game.generateKey(y2_temp, x1_temp)).peek() instanceof DestroyBrick);
-        }
-        return true;
-    }
-
-
-    protected boolean rightableBrick(int x_pos, int y_pos) {
-        x1_temp = (y_pos + pixel) / Sprite.SCALED_SIZE;
-        y1_temp = (x_pos + Sprite.SCALED_SIZE + pixel) / Sprite.SCALED_SIZE;
-
-        x2_temp = (y_pos + Sprite.SCALED_SIZE - pixel) / Sprite.SCALED_SIZE;
-        y2_temp = (x_pos + Sprite.SCALED_SIZE + pixel) / Sprite.SCALED_SIZE;
-
-        if (Game.LayeredEntity.containsKey(Game.generateKey(y1_temp, x1_temp)) ||
-                Game.LayeredEntity.containsKey(Game.generateKey(y2_temp, x2_temp))) {
-            return !(Game.LayeredEntity.get(Game.generateKey(y1_temp, x1_temp)).peek() instanceof DestroyBrick) &&
-                    !(Game.LayeredEntity.get(Game.generateKey(y2_temp, x1_temp)).peek() instanceof DestroyBrick);
-        }
-        return true;
-    }
-
-
-    protected boolean downableBrick(int x_pos, int y_pos) {
-        x1_temp = (y_pos + Sprite.SCALED_SIZE + pixel) / Sprite.SCALED_SIZE;
-        y1_temp = (x_pos + pixel) / Sprite.SCALED_SIZE;
-
-        x2_temp = (y_pos + Sprite.SCALED_SIZE + pixel) / Sprite.SCALED_SIZE;
-        y2_temp = (x_pos + Sprite.SCALED_SIZE - pixel) / Sprite.SCALED_SIZE;
-
-        if (Game.LayeredEntity.containsKey(Game.generateKey(y1_temp, x1_temp)) ||
-                Game.LayeredEntity.containsKey(Game.generateKey(y2_temp, x2_temp))) {
-            return !(Game.LayeredEntity.get(Game.generateKey(y1_temp, x1_temp)).peek() instanceof DestroyBrick) &&
-                    !(Game.LayeredEntity.get(Game.generateKey(y2_temp, x1_temp)).peek() instanceof DestroyBrick);
-        }
-        return true;
-    }
-
-    protected boolean upableBrick(int x_pos, int y_pos) {
-        x1_temp = (y_pos - pixel) / Sprite.SCALED_SIZE;
-        y1_temp = (x_pos + pixel) / Sprite.SCALED_SIZE;
-
-        x2_temp = (y_pos - pixel) / Sprite.SCALED_SIZE;
-        y2_temp = (x_pos + Sprite.SCALED_SIZE - pixel) / Sprite.SCALED_SIZE;
-        if (Game.LayeredEntity.containsKey(Game.generateKey(y1_temp, x1_temp)) ||
-                Game.LayeredEntity.containsKey(Game.generateKey(y2_temp, x2_temp))) {
-            return !(Game.LayeredEntity.get(Game.generateKey(y1_temp, x1_temp)).peek() instanceof DestroyBrick) &&
-                    !(Game.LayeredEntity.get(Game.generateKey(y2_temp, x1_temp)).peek() instanceof DestroyBrick);
-        }
-        return true;
-    }
-
-
 
     private void initAndHandleFlame()
     {
@@ -200,7 +137,7 @@ public class Bomb extends MovingEntity {
             {
                 newFlame.setStatus("left");
             }
-            flameList.add(newFlame); //cai nay de lam gi
+            flameList.add(newFlame);
         }
 
         for (int i = 0; i<Game.LENGTH_OF_FLAME;i++)
